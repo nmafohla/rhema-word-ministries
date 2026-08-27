@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/hakilico/public_html/  # Change this path to match your website's folder in cPanel (e.g. /home/hakilico/rhemawordministries.co.zw/)
+    - /bin/cp -R dist/* $DEPLOYPATH
