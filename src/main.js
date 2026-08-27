@@ -1,5 +1,4 @@
-// Rhema Word Ministries Client Logic
-import './style.css';
+// Linked directly in index.html
 
 // ================= DATABASE INITIAL STATE =================
 const DEFAULT_DATABASE = {
