@@ -1,0 +1,1661 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/images/logo-badge.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rhema Word Ministries is an apostolic house led by Apostle Keith Bhehane, commissioned to declare the Word of God and manifest His wonders on Earth." />
+    <link rel="preload" as="image" href="/images/church-family-couch.jpg" fetchpriority="high" />
+    <title>Rhema Word Ministries | Global Digital Campus</title>
+    
+    <!-- Google Fonts — DM Sans (Elevation Church) + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=Inter:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=Inter:wght@300;400;500;600&display=swap">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=Inter:wght@300;400;500;600&display=swap">
+    </noscript>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Top Announcement Alert Banner (Controlled from Admin) -->
+      <div class="announcement-bar active" id="live-announcement-bar">
+        <div class="announcement-content">
+          <span class="pulse-indicator"><span class="pulse-dot"></span> <span id="announcement-badge-text">Live Notice</span></span>
+          <span id="announcement-main-text">Special Miracle &amp; Prophetic Service this Sunday at 11:00 AM! Join us in Bulawayo or online.</span>
+          <a href="#events" class="announcement-btn" id="announcement-action-btn" data-nav-target="events">Service Times</a>
+        </div>
+        <button class="announcement-close" id="btn-close-announcement" aria-label="Dismiss"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+
+      <!-- Main Navigation Bar -->
+      <header class="main-header">
+        <div class="header-container">
+          <a href="#home" class="logo-area" id="nav-logo">
+            <img src="/images/logo-main.jpg" alt="RWM Logo" class="nav-logo-img">
+            <span class="logo-text">Rhema Word<span class="subtext">Ministries</span></span>
+          </a>
+          
+          <!-- Mobile Menu Toggle -->
+          <button class="mobile-toggle" aria-label="Toggle menu" id="mobile-toggle-btn">
+            <i data-lucide="menu"></i>
+          </button>
+
+          <nav class="nav-menu" id="nav-menu-container">
+            <a href="#home" class="nav-link active" data-tab="home">Home</a>
+            <a href="#about" class="nav-link" data-tab="about">About Us</a>
+            <a href="#foundation" class="nav-link" data-tab="foundation">People's Foundation</a>
+            <a href="#foundation-acts" class="nav-link" data-tab="foundation-acts">Gallery</a>
+            <a href="#blog" class="nav-link" data-tab="blog">Weekly Word</a>
+            <a href="#events" class="nav-link" data-tab="events">Events</a>
+            <a href="#give" class="nav-link btn-donate-nav" data-tab="give">Give / Donate</a>
+            <a href="#contact" class="nav-link" data-tab="contact">Connect</a>
+            <a href="https://www.facebook.com/rhemawordministrieszim/" target="_blank" rel="noopener" class="btn-facebook-nav" title="Rhema Word Ministries Zim Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="margin-right: 6px;"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> Facebook
+            </a>
+            <button class="btn-theme-toggle" id="btn-theme-toggle" aria-label="Toggle Theme" title="Switch Theme">
+              <i data-lucide="sun" id="theme-icon-sun"></i>
+              <i data-lucide="moon" id="theme-icon-moon" style="display:none;"></i>
+            </button>
+            <button class="btn-admin-gate" id="btn-admin-gate" aria-label="Admin Portal">
+              <i data-lucide="shield-alert"></i> Admin
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Main Dynamic Content Wrapper -->
+      <main class="content-wrapper">
+        
+        <!-- ================= HOME TAB ================= -->
+        <section id="tab-home" class="tab-content active">
+          <!-- Hero Section -->
+          <div class="hero-section">
+            <div class="hero-carousel">
+              <div class="carousel-slide active hero-slide-1" style="background-image: linear-gradient(rgba(8,8,8,0.45), rgba(8,8,8,0.80)), url('/images/church-family-couch.jpg'); background-position: center 20%;"></div>
+              <div class="carousel-slide hero-slide-2" style="background-image: linear-gradient(rgba(8,8,8,0.45), rgba(8,8,8,0.80)), url('/images/church-founders-standing.jpg'); background-position: center 15%;"></div>
+              <div class="carousel-slide" style="background-image: linear-gradient(rgba(8,8,8,0.45), rgba(8,8,8,0.80)), url('/images/church-service-1.jpg')"></div>
+              <div class="carousel-slide" style="background-image: linear-gradient(rgba(8,8,8,0.40), rgba(8,8,8,0.80)), url('/images/church-worship-1.jpg')"></div>
+              <div class="carousel-slide" style="background-image: linear-gradient(rgba(8,8,8,0.45), rgba(8,8,8,0.80)), url('/images/church-service-full.jpg')"></div>
+              <div class="carousel-slide" style="background-image: linear-gradient(rgba(8,8,8,0.45), rgba(8,8,8,0.80)), url('/images/church-apostle-prayer.jpg')"></div>
+              <div class="carousel-slide" style="background-image: linear-gradient(rgba(8,8,8,0.40), rgba(8,8,8,0.80)), url('/images/church-procession-1.jpg')"></div>
+            </div>
+            
+            <div class="hero-overlay-content">
+              <div class="badge-container reveal">
+                <img src="/images/logo-badge.jpg" alt="RWM Logo Badge" class="gold-badge-img">
+              </div>
+              <span class="hero-overline reveal reveal-delay-1">Rhema Word Ministries · Word | Worship | Wonders</span>
+              <h1 class="hero-title reveal reveal-delay-2">Experience the<br>Power of the Word</h1>
+              <p class="hero-subtitle reveal reveal-delay-3">An apostolic house commissioned to proclaim the Kingdom of God, minister the uncompromised Word, and demonstrate God's love.</p>
+              <div class="hero-ctas reveal reveal-delay-4">
+                <a href="#about" class="btn btn-primary" data-nav-target="about">Our Vision</a>
+                <a href="#give" class="btn btn-outline" data-nav-target="give">Partner With Us</a>
+              </div>
+            </div>
+
+            <!-- Scroll hint -->
+            <div class="hero-scroll-hint">
+              <i data-lucide="chevron-down"></i>
+              <span>Scroll</span>
+            </div>
+            
+            <!-- Hero Carousel Navigation -->
+            <div class="carousel-nav">
+              <span class="carousel-dot active" data-slide="0"></span>
+              <span class="carousel-dot" data-slide="1"></span>
+              <span class="carousel-dot" data-slide="2"></span>
+              <span class="carousel-dot" data-slide="3"></span>
+              <span class="carousel-dot" data-slide="4"></span>
+              <span class="carousel-dot" data-slide="5"></span>
+              <span class="carousel-dot" data-slide="6"></span>
+            </div>
+          </div>
+
+          <!-- Multilingual Welcome Banner -->
+          <div class="section-container" style="padding-top:20px; padding-bottom:0; text-align:center;">
+            <div style="display:inline-flex; align-items:center; gap:16px; padding:10px 24px; background:rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.22); border-radius:30px; font-family:var(--font-heading); font-size:0.82rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent); flex-wrap:wrap; justify-content:center;">
+              <span>Welcome</span>
+              <span style="opacity:0.35;">•</span>
+              <span>Siyalamukela</span>
+              <span style="opacity:0.35;">•</span>
+              <span>Tinokuchingamidzai</span>
+            </div>
+          </div>
+
+          <!-- Scripture of the Day Highlight -->
+          <div class="scripture-highlight-container">
+            <div class="glass-card scripture-card reveal">
+              <div class="scripture-badge"><i data-lucide="book-open"></i> SCRIPTURE OF THE DAY</div>
+              <blockquote id="home-scripture-text">"So then faith comes by hearing, and hearing by the word of God."</blockquote>
+              <cite id="home-scripture-verse">— Romans 10:17</cite>
+            </div>
+          </div>
+
+          <!-- Feature Highlights / Grid -->
+          <div class="section-container">
+            <div style="text-align:center; margin-bottom:40px;">
+              <span class="overline">Our Pillars</span>
+              <h2 class="reveal" style="font-size:clamp(1.8rem,3.5vw,2.5rem); letter-spacing:-0.03em;">Built on Word, Worship &amp; Wonders</h2>
+            </div>
+            <div class="home-grid">
+              <div class="grid-card reveal reveal-delay-1">
+                <div class="card-icon"><i data-lucide="users"></i></div>
+                <h3>Active Ministry</h3>
+                <p>Under the visionary leadership of Apostle Keith &amp; Pastor Talent Bhehane, ministering the raw power, grace, and Word of God.</p>
+              </div>
+              
+              <div class="grid-card reveal reveal-delay-2">
+                <div class="card-icon"><i data-lucide="heart-handshake"></i></div>
+                <h3>People's Foundation</h3>
+                <p>Our dedicated charity outreach arm, demonstrating God's love practically through basic needs and community aid.</p>
+                <a href="#foundation" class="card-link" data-nav-target="foundation">View Encounters <i data-lucide="arrow-right"></i></a>
+              </div>
+
+              <div class="grid-card reveal reveal-delay-3">
+                <div class="card-icon"><i data-lucide="tv"></i></div>
+                <h3>Global Ministry &amp; Broadcasts</h3>
+                <p>Stay connected with weekly messages, praise &amp; worship broadcasts, and ministry gatherings across Zimbabwe and beyond.</p>
+                <a href="#events" class="card-link" data-nav-target="events">Service Times &amp; Events <i data-lucide="arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Home Latest Encounter Teaser -->
+          <div class="home-encounter-teaser section-container">
+            <div class="teaser-image reveal" style="background-image: url('/images/charity-dist-1.jpg')"></div>
+            <div class="teaser-text reveal reveal-delay-2">
+              <span class="overline">People's Foundation</span>
+              <h2>Spotlight: Charity &amp; Outreach</h2>
+              <p class="section-lead">Bringing hope to communities by personally distributing essential mealie meal bags and staple food hampers to families in need.</p>
+              <div class="metric-row">
+                <div class="metric-box">
+                  <span class="metric-num" id="stat-bags-home">1,250+</span>
+                  <span class="metric-lbl">Bags Distributed</span>
+                </div>
+                <div class="metric-box">
+                  <span class="metric-num" id="stat-families-home">850+</span>
+                  <span class="metric-lbl">Families Assisted</span>
+                </div>
+              </div>
+              <a href="#foundation" class="btn btn-primary" data-nav-target="foundation">Read Charity Stories</a>
+            </div>
+          </div>
+
+          <!-- Member Testimonies & Signs Showcase (Controlled from Admin) -->
+          <div class="section-container" style="padding-top:20px;">
+            <div class="section-title-area text-center" style="margin-bottom:32px;">
+              <span class="overline">Supernatural Impact</span>
+              <h2 class="reveal" style="font-size:clamp(1.8rem,3.5vw,2.5rem); letter-spacing:-0.03em;">Miracles, Signs &amp; Testimonies</h2>
+              <p class="section-lead" style="max-width:680px; margin:0 auto;">Hear what God is doing through the ministry of Apostle Keith &amp; Pastor Talent Bhehane.</p>
+            </div>
+
+            <div class="testimonies-grid" id="home-testimonies-container">
+              <!-- Dynamically populated from Database -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= ABOUT US TAB ================= -->
+        <section id="tab-about" class="tab-content">
+          <div class="section-header-container" style="background-image: linear-gradient(rgba(8,8,8,0.60), rgba(8,8,8,0.88)), url('/images/church-procession-1.jpg')">
+            <h1 class="page-title">Who We Are</h1>
+            <p class="page-desc">Rhema Word Ministries is an apostolic house led by Apostle Keith &amp; Pastor Talent Bhehane, commissioned to declare the Word of God and manifest His wonders on Earth.</p>
+          </div>
+
+          <div class="section-container about-grid">
+            <div class="about-bio-image" style="background-image: url('/images/apostle-keith-bio.jpg'); background-position: center top;">
+              <div class="bio-overlay">
+                <h3>Apostle Keith Bhehane</h3>
+                <p>Founder &amp; Lead Pastor, Rhema Word Ministries</p>
+              </div>
+            </div>
+            
+            <div class="about-bio-text">
+              <span class="subtitle-tag">Leadership Bio</span>
+              <h2>Apostle Keith Bhehane</h2>
+              <p>Apostle Keith Bhehane is a dynamic and eloquent teacher of the Word of God, deeply passionate about seeing people prosper and be set free from every captivity in every sphere of life. He ministers the Word with rare simplicity and profound revelation — touching hearts, stirring faith, and demonstrating the healing and prophetic power of Christ.</p>
+              <p>Beside him stands his beautiful and loving wife, <strong>Pastor Talent Bhehane</strong>, a visionary pastor and ministry partner. Together, Keith and Talent have been married since <strong>2012</strong> and are proud parents of three sons — <strong>Jaden, Cayden and Nathan</strong>. Their family is a living testimony of God's faithfulness and grace.</p>
+              <p>Called with an apostolic mandate to reach the nations, Apostle Keith established the <strong>People's Foundation</strong> — a practical charity outreach serving as a beacon of hope, feeding and clothing thousands across Zimbabwe and beyond.</p>
+              <p style="font-size:0.9rem; color:var(--txt-secondary); border-left:2px solid var(--accent); padding-left:16px; margin-top:8px;"><strong style="color:var(--txt-primary);">Our Beginnings:</strong> Rhema Word Ministries held its very first service on <strong style="color:var(--accent)">08 October 2017</strong> in a living room at No. 19 Cawstone Street, Northend, Bulawayo, with just 19 people. It closed twice before relaunching in <strong style="color:var(--accent)">2020</strong> in a house in Pelandaba. Within a few months, we moved to Esiziba Youth Center in Njube, and as the ministry grew, transitioned to Pelandaba Hall. On <strong style="color:var(--accent)">02 July 2023</strong>, we moved to town at Phakama Building, and on <strong style="color:var(--accent)">02 July 2026</strong>, we moved to our own venue in town, Luxor House Basement.</p>
+              
+              <div class="social-badge-row">
+                <a href="https://www.facebook.com/rhemawordministrieszim/" target="_blank" rel="noopener" class="social-badge fb-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" style="margin-right: 6px;"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> Rhema Word Ministries Zim
+                </a>
+                <a href="https://www.facebook.com/ApostleKeithBhehane" target="_blank" rel="noopener" class="social-badge fb-badge" title="Apostle Keith Bhehane Personal Profile">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" style="margin-right: 6px;"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> Keith Millionair Bhehane
+                </a>
+                <a href="https://www.tiktok.com/@apostlekeithbillionaire" target="_blank" rel="noopener" class="social-badge tt-badge">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.74-3.94-1.74-.22-.2-.42-.43-.61-.67-.02 3.48-.01 6.96-.02 10.43-.11 2.37-1.39 4.71-3.66 5.58-2.6 1.08-5.88.58-7.92-1.44-2.22-2.19-2.31-6.01-.2-8.3 1.63-1.87 4.25-2.52 6.64-1.79v4.11c-1.3-.47-2.82-.17-3.79.8-.97.97-1.12 2.61-.34 3.7.77 1.14 2.32 1.5 3.58.9 1.15-.51 1.75-1.78 1.72-3.03V0z"/></svg> @ApostleKeithBillionaire
+                </a>
+                <a href="https://www.tiktok.com/@rhemawordministries" target="_blank" rel="noopener" class="social-badge tt-badge">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.74-3.94-1.74-.22-.2-.42-.43-.61-.67-.02 3.48-.01 6.96-.02 10.43-.11 2.37-1.39 4.71-3.66 5.58-2.6 1.08-5.88.58-7.92-1.44-2.22-2.19-2.31-6.01-.2-8.3 1.63-1.87 4.25-2.52 6.64-1.79v4.11c-1.3-.47-2.82-.17-3.79.8-.97.97-1.12 2.61-.34 3.7.77 1.14 2.32 1.5 3.58.9 1.15-.51 1.75-1.78 1.72-3.03V0z"/></svg> @RhemaWordMinistries
+                </a>
+                <a href="https://www.instagram.com/apostlekeithbhehane" target="_blank" rel="noopener" class="social-badge" style="background:rgba(195,42,163,0.10);border:1px solid rgba(195,42,163,0.3);color:#e040a0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" style="margin-right: 6px;"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> @ApostleKeithBhehane
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mission, Vision, and Values Tabs -->
+          <div class="values-tabs-container section-container">
+            <div class="tabs-nav-bar">
+              <button class="value-tab-btn active" data-value-tab="vision">Our Vision</button>
+              <button class="value-tab-btn" data-value-tab="mission">Our Mission</button>
+              <button class="value-tab-btn" data-value-tab="values">Our Values</button>
+              <button class="value-tab-btn" data-value-tab="aims">Our Aims</button>
+            </div>
+            
+            <div class="value-tab-pane active" id="pane-vision">
+              <div class="pane-content glass-card">
+                <i data-lucide="eye" class="pane-large-icon"></i>
+                <h3>Our Vision</h3>
+                <p class="pane-text">To proclaim the kingdom of God &amp; bring salvation through Christ to all the people of the world.</p>
+              </div>
+            </div>
+
+            <div class="value-tab-pane" id="pane-mission">
+              <div class="pane-content glass-card">
+                <i data-lucide="compass" class="pane-large-icon"></i>
+                <h3>Our Mission</h3>
+                <p class="pane-text">To minister the uncompromised and undiluted Word of God.</p>
+              </div>
+            </div>
+
+            <div class="value-tab-pane" id="pane-values">
+              <div class="pane-content glass-card">
+                <div class="values-grid">
+                  <div class="value-item">
+                    <h4>1. The Will of God</h4>
+                    <p>Is to minister the will of God in every sphere of life and society.</p>
+                  </div>
+                  <div class="value-item">
+                    <h4>2. The Word of God</h4>
+                    <p>Preaching the uncompromised and undiluted Rhema Word of God.</p>
+                  </div>
+                  <div class="value-item">
+                    <h4>3. The Wisdom of God</h4>
+                    <p>Walking in the counsel and divine wisdom of God in all we do.</p>
+                  </div>
+                  <div class="value-item">
+                    <h4>4. The Works of God</h4>
+                    <p>Demonstrating the works of God through healing, miracles and charity.</p>
+                  </div>
+                  <div class="value-item">
+                    <h4>5. The Wonders of God</h4>
+                    <p>Experiencing the raw supernatural signs and wonders of the Holy Spirit.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="value-tab-pane" id="pane-aims">
+              <div class="pane-content glass-card">
+                <i data-lucide="target" class="pane-large-icon"></i>
+                <h3>Our Aims</h3>
+                <div class="values-grid">
+                  <div class="value-item">
+                    <h4>Reach <span style="font-size:0.75rem;opacity:0.6;">Mark 16:15</span></h4>
+                    <p>Reach to the lost people of the world with the Gospel of Jesus Christ.</p>
+                  </div>
+                  <div class="value-item">
+                    <h4>Pastor <span style="font-size:0.75rem;opacity:0.6;">Acts 20:28</span></h4>
+                    <p>Pastor the people we reach — feeding and shepherding them in the Word.</p>
+                  </div>
+                  <div class="value-item">
+                    <h4>Disciple <span style="font-size:0.75rem;opacity:0.6;">Ephesians 4:12</span></h4>
+                    <p>Disciple believers into maturity, equipping the saints for the work of ministry.</p>
+                  </div>
+                  <div class="value-item">
+                    <h4>Deploy <span style="font-size:0.75rem;opacity:0.6;">Ephesians 6:7</span></h4>
+                    <p>Deploy trained believers back into the world as ambassadors of the Kingdom.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Our Worship — Biblical References -->
+          <div class="section-container" style="margin-top:20px;">
+            <div class="section-title-area text-center" style="margin-bottom:32px;">
+              <span class="subtitle-tag">Biblical Foundation</span>
+              <h2>Our Worship</h2>
+              <p class="section-lead" style="max-width:760px; margin:0 auto;">In our worship we have only one purpose: to honour, exalt and lift up our Lord Jesus Christ. We do this through praise, worship, prayer, breaking of bread, and preaching the Word of God.</p>
+            </div>
+
+            <div class="values-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+              <div class="glass-card" style="padding:28px;">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                  <span style="font-size:1.1rem; font-weight:700; color:var(--accent);">1.</span>
+                  <h3 style="margin:0; font-size:1.15rem;">The Word of God</h3>
+                </div>
+                <span style="display:inline-block; font-size:0.75rem; color:var(--accent); font-weight:600; margin-bottom:8px;">John 16:9</span>
+                <p style="font-size:0.92rem; color:var(--txt-secondary); line-height:1.6;">The preaching of the Word of God is the focus of our meetings. It is the Word of God that brings conviction of sin leading to repentance.</p>
+              </div>
+
+              <div class="glass-card" style="padding:28px;">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                  <span style="font-size:1.1rem; font-weight:700; color:var(--accent);">2.</span>
+                  <h3 style="margin:0; font-size:1.15rem;">Praise &amp; Worship</h3>
+                </div>
+                <span style="display:inline-block; font-size:0.75rem; color:var(--accent); font-weight:600; margin-bottom:8px;">Heartfelt Expression</span>
+                <p style="font-size:0.92rem; color:var(--txt-secondary); line-height:1.6;">The emphasis is always from the heart, expressing joy and gratitude to the Lord through clapping, raising hands, kneeling, dancing for joy, and singing in tongues or vernacular.</p>
+              </div>
+
+              <div class="glass-card" style="padding:28px;">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                  <span style="font-size:1.1rem; font-weight:700; color:var(--accent);">3.</span>
+                  <h3 style="margin:0; font-size:1.15rem;">Gifts of the Spirit</h3>
+                </div>
+                <span style="display:inline-block; font-size:0.75rem; color:var(--accent); font-weight:600; margin-bottom:8px;">1 Corinthians 12:8-12</span>
+                <p style="font-size:0.92rem; color:var(--txt-secondary); line-height:1.6;">Prophecy, Tongues, Interpretation, Words of Knowledge, Wisdom, Discerning of Spirits, Working of Miracles, Healings, and Faith — gifts given to edify the body of Christ.</p>
+              </div>
+
+              <div class="glass-card" style="padding:28px;">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                  <span style="font-size:1.1rem; font-weight:700; color:var(--accent);">4.</span>
+                  <h3 style="margin:0; font-size:1.15rem;">Laying on of Hands</h3>
+                </div>
+                <span style="display:inline-block; font-size:0.75rem; color:var(--accent); font-weight:600; margin-bottom:8px;">2 Tim 1:6 · Acts 8:17 · Mark 16:18</span>
+                <p style="font-size:0.92rem; color:var(--txt-secondary); line-height:1.6;">A spiritual impartation whereby people are healed, delivered, set in office, and receive spiritual gifts for supernatural breakthrough.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PEOPLE'S FOUNDATION TAB ================= -->
+        <section id="tab-foundation" class="tab-content">
+          <div class="section-header-container" style="background-image: linear-gradient(rgba(8,8,8,0.65), rgba(8,8,8,0.90)), url('/images/church-congregation-1.jpg')">
+            <h1 class="page-title">People's Foundation</h1>
+            <p class="page-desc">The philanthropic heart of Rhema Word Ministries. Loving our neighbors through real, direct community relief.</p>
+          </div>
+
+          <!-- Foundation Stats Row -->
+          <div class="section-container stats-grid">
+            <div class="stat-card glass-card">
+              <div class="stat-icon"><i data-lucide="heart" class="txt-accent"></i></div>
+              <h3 id="stat-bags-counter">1,250</h3>
+              <p>Bags of Mealie Meal Distributed</p>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-icon"><i data-lucide="home"></i></div>
+              <h3 id="stat-families-counter">850</h3>
+              <p>Households Reached</p>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-icon"><i data-lucide="dollar-sign"></i></div>
+              <h3 id="stat-raised-counter">$14,500</h3>
+              <p>Total Funds Deployed</p>
+            </div>
+          </div>
+
+          <!-- Foundation Vision & Quotes Banner (from Official Ministry Document) -->
+          <div class="section-container" style="padding-top:0;">
+            <div class="glass-card" style="padding:36px 40px; text-align:center; border:1px solid rgba(212,175,55,0.2);">
+              <span class="subtitle-tag">People's Foundation Vision</span>
+              <h2 style="font-size:clamp(1.5rem, 3vw, 2.2rem); margin-bottom:12px; color:var(--txt-primary);">Demonstrating the Love of God through Charity</h2>
+              <p style="font-family:var(--font-heading); font-size:1.15rem; color:var(--accent); font-style:italic; margin-bottom:28px;">"For God so loved the world, that He gave His only begotten Son..." — John 3:16</p>
+              
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; text-align:left; margin-top:20px;">
+                <div style="background:rgba(255,255,255,0.02); padding:18px 20px; border-left:2px solid var(--accent); border-radius:4px;">
+                  <p style="font-size:0.9rem; color:var(--txt-primary); margin-bottom:6px;">"We make a living by what we get, but we make a life by what we give."</p>
+                  <span style="font-size:0.75rem; color:var(--txt-muted);">— Winston Churchill</span>
+                </div>
+                <div style="background:rgba(255,255,255,0.02); padding:18px 20px; border-left:2px solid var(--accent); border-radius:4px;">
+                  <p style="font-size:0.9rem; color:var(--txt-primary); margin-bottom:6px;">"There can be no Christianity where there is no charity."</p>
+                  <span style="font-size:0.75rem; color:var(--txt-muted);">— Charles Caleb Colton</span>
+                </div>
+                <div style="background:rgba(255,255,255,0.02); padding:18px 20px; border-left:2px solid var(--accent); border-radius:4px;">
+                  <p style="font-size:0.9rem; color:var(--txt-primary); margin-bottom:6px;">"If you think you're too small to have an impact, try going to bed with a mosquito."</p>
+                  <span style="font-size:0.75rem; color:var(--txt-muted);">— Anita Roddick</span>
+                </div>
+                <div style="background:rgba(255,255,255,0.02); padding:18px 20px; border-left:2px solid var(--accent); border-radius:4px;">
+                  <p style="font-size:0.9rem; color:var(--txt-primary); margin-bottom:6px;">"Change will not come if we wait for some other person or time. We are the change that we seek."</p>
+                  <span style="font-size:0.75rem; color:var(--txt-muted);">— Community Mandate</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charity Encounters / Timeline List -->
+          <div class="section-container charity-encounters-section">
+            <div class="section-title-area">
+              <span class="subtitle-tag">Direct Encounters</span>
+              <h2>Charity Encounters Ledger</h2>
+              <p class="section-lead">A transparent chronicle of our recent missions, relief updates, and the real encounters with individuals receiving help.</p>
+            </div>
+
+            <!-- Custom Filter Options -->
+            <div class="table-actions">
+              <div class="search-box">
+                <i data-lucide="search"></i>
+                <input type="text" id="charity-search" placeholder="Search encounters...">
+              </div>
+            </div>
+
+            <!-- Responsive Table/Grid of Encounters -->
+            <div class="encounters-table-container glass-card">
+              <table class="responsive-table">
+                <thead>
+                  <tr>
+                    <th>Mission</th>
+                    <th>Outreach Target</th>
+                    <th>Support Quantity</th>
+                    <th>Story / Encounters</th>
+                    <th>Visuals</th>
+                  </tr>
+                </thead>
+                <tbody id="charity-ledger-body">
+                  <!-- JS dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Donation Callout Banner -->
+          <div class="give-callout section-container">
+            <div class="glass-card give-callout-card">
+              <div class="give-callout-content">
+                <h2>Support the People's Foundation Today</h2>
+                <p>100% of donations made to the People's Foundation go directly into acquiring Refined Mealie Meal bags, cooking oil, and staple food supplies for underprivileged households.</p>
+                <a href="#give" class="btn btn-primary" data-nav-target="give">Partner with a Donation</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= GALLERY TAB ================= -->
+        <section id="tab-foundation-acts" class="tab-content">
+          <div class="section-header-container" style="background-image: linear-gradient(rgba(8,8,8,0.65), rgba(8,8,8,0.90)), url('/images/church-worship-2.jpg')">
+            <h1 class="page-title">Media Gallery</h1>
+            <p class="page-desc">Explore visual highlights of Rhema Word Ministries including church life, worship encounters, and the People's Foundation outreaches.</p>
+          </div>
+
+          <div class="section-container foundation-gallery-section">
+            <div class="section-title-area text-center" style="margin-bottom: 30px;">
+              <span class="subtitle-tag">Moments &amp; Memories</span>
+              <h2>Visual Journal</h2>
+              <p class="section-lead" style="max-width: 700px; margin: 0 auto;">View live highlights of our church family worship services, leadership moments, next generation training, and charity outreaches.</p>
+            </div>
+
+            <!-- Gallery Category Filters -->
+            <div class="gallery-filters" style="display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap;">
+              <button class="btn btn-sm btn-filter active" data-filter="all">All</button>
+              <button class="btn btn-sm btn-filter" data-filter="church-life">Church Life &amp; Worship</button>
+              <button class="btn btn-sm btn-filter" data-filter="outreach">People's Foundation</button>
+            </div>
+
+            <!-- Responsive Masonry/Grid Gallery -->
+            <div class="outreach-photo-grid" id="foundation-acts-grid">
+              
+              <!-- Card 1 -->
+              <div class="outreach-card glass-card">
+                <div class="outreach-img-wrapper">
+                  <img src="/images/charity-dist-1.jpg" alt="Apostle Keith distributing mealie meal bags" loading="lazy">
+                  <div class="outreach-overlay">
+                    <span class="outreach-date">Relief Mission</span>
+                  </div>
+                </div>
+                <div class="outreach-info">
+                  <h3>Direct Relief Distribution</h3>
+                  <p>Apostle Keith Bhehane personally handing out Refined Mealie Meal to local residents during our community hunger relief drive.</p>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="outreach-card glass-card">
+                <div class="outreach-img-wrapper">
+                  <img src="/images/charity-dist-2.jpg" alt="Apostle Keith handing food to seated lady" loading="lazy">
+                  <div class="outreach-overlay">
+                    <span class="outreach-date">Relief Mission</span>
+                  </div>
+                </div>
+                <div class="outreach-info">
+                  <h3>Supporting the Elderly</h3>
+                  <p>A personal encounter with an elderly community partner, receiving staple meals, cooking oil, and essential sanitation packages.</p>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="outreach-card glass-card">
+                <div class="outreach-img-wrapper">
+                  <img src="/images/charity-dist-3.jpg" alt="Apostle Keith handing food to lady in white sweater" loading="lazy">
+                  <div class="outreach-overlay">
+                    <span class="outreach-date">Relief Mission</span>
+                  </div>
+                </div>
+                <div class="outreach-info">
+                  <h3>Community Food Relief Campaign</h3>
+                  <p>Apostle Keith handing essential food baskets and maize meal bags to households, ensuring child-headed and single-parent families are supported.</p>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="outreach-card glass-card">
+                <div class="outreach-img-wrapper">
+                  <img src="/images/charity-dist-4.jpg" alt="Apostle Keith handing food to lady in yellow shirt" loading="lazy">
+                  <div class="outreach-overlay">
+                    <span class="outreach-date">Relief Mission</span>
+                  </div>
+                </div>
+                <div class="outreach-info">
+                  <h3>Community Empowerment</h3>
+                  <p>Empowering residents through direct support. Our team continues to expand outreaches to more families and districts.</p>
+                </div>
+              </div>
+
+              <!-- Card 5 -->
+              <div class="outreach-card glass-card">
+                <div class="outreach-img-wrapper">
+                  <img src="/images/charity-piles-1.jpg" alt="Bags of refined mealie meal" loading="lazy">
+                  <div class="outreach-overlay">
+                    <span class="outreach-date">Relief Mission</span>
+                  </div>
+                </div>
+                <div class="outreach-info">
+                  <h3>Staple Stock Supplies</h3>
+                  <p>Piles of Refined Mealie Meal stockpiled at our community dispatch center, ready for distribution to vulnerable families.</p>
+                </div>
+              </div>
+
+              <!-- Card 6 -->
+              <div class="outreach-card glass-card">
+                <div class="outreach-img-wrapper">
+                  <img src="/images/charity-piles-2.jpg" alt="Mealie meal and cooking oil lineup" loading="lazy">
+                  <div class="outreach-overlay">
+                    <span class="outreach-date">Relief Mission</span>
+                  </div>
+                </div>
+                <div class="outreach-info">
+                  <h3>Relief Food Packaging</h3>
+                  <p>Cooking oil bottles, flour, and basic nutrition supplies lined up for fast packing and sorting by our volunteers.</p>
+                </div>
+              </div>
+
+              <!-- Card 7 -->
+              <div class="outreach-card glass-card">
+                <div class="outreach-img-wrapper">
+                  <img src="/images/charity-piles-3.jpg" alt="Roller Meal bags" loading="lazy">
+                  <div class="outreach-overlay">
+                    <span class="outreach-date">Relief Mission</span>
+                  </div>
+                </div>
+                <div class="outreach-info">
+                  <h3>Roller Meal Stockpile</h3>
+                  <p>Bulk shipments of premium roller meal bags stored safely inside our ministry warehouse, securing nutrition supply lines.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= BLOG / UPDATES TAB ================= -->
+        <section id="tab-blog" class="tab-content">
+          <div class="section-header-container" style="background-image: linear-gradient(rgba(8,8,8,0.65), rgba(8,8,8,0.90)), url('/images/church-service-2.jpg')">
+            <h1 class="page-title">Weekly Word & Daily Scriptures</h1>
+            <p class="page-desc">Stay spiritually nourished with teachings from Apostle Keith Bhehane and our daily scripture calendar.</p>
+          </div>
+
+          <div class="section-container blog-feed-layout">
+            <!-- Left Side: Blog Post and Teachings Feed -->
+            <div class="blog-articles-area">
+              <h2 class="area-title"><i data-lucide="book-marked"></i> Apostle's Weekly Word</h2>
+              <div class="articles-grid" id="blog-posts-container">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Right Side: Scripture Stream & Search -->
+            <div class="blog-sidebar">
+              <div class="glass-card sidebar-card search-card">
+                <h3>Search Teachings</h3>
+                <div class="search-box">
+                  <i data-lucide="search"></i>
+                  <input type="text" id="blog-search" placeholder="Search keywords...">
+                </div>
+              </div>
+
+              <div class="glass-card sidebar-card scripture-list-card">
+                <h3>Daily Scripture Archive</h3>
+                <div class="scripture-stream" id="scripture-archive-list">
+                  <!-- Dynamically populated -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= EVENTS TAB ================= -->
+        <section id="tab-events" class="tab-content">
+          <div class="section-header-container" style="background-image: linear-gradient(rgba(8,8,8,0.65), rgba(8,8,8,0.90)), url('/images/church-prayer-1.jpg')">
+            <h1 class="page-title">Services &amp; Gatherings</h1>
+            <p class="page-desc">Join us in fellowship at our church home in Bulawayo or tune in to our live broadcasts. Everyone is warmly welcome.</p>
+          </div>
+
+          <!-- Official Service Times Card (from Ministry Notice) -->
+          <div class="section-container" style="padding-bottom:10px;">
+            <div class="glass-card" style="padding:32px 36px; border:1px solid rgba(212,175,55,0.25);">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:24px; border-bottom:1px solid var(--border-color); padding-bottom:16px;">
+                <div>
+                  <span class="subtitle-tag" style="margin-bottom:4px;">Weekly Schedule</span>
+                  <h2 style="margin:0; font-size:clamp(1.5rem, 2.5vw, 2rem);">Official Service Times</h2>
+                </div>
+                <div style="text-align:right;">
+                  <span style="font-size:0.82rem; color:var(--txt-muted);">With Apostle Keith &amp; Pastor Talent</span>
+                  <p style="font-size:0.88rem; color:var(--accent); margin:2px 0 0; font-weight:600;">Enquiries: +263 775 662 844</p>
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+                <div style="background:rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.22); border-radius:8px; padding:18px 20px;">
+                  <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--accent); font-weight:700;">Sundays</span>
+                  <h4 style="font-size:1.2rem; margin:6px 0 4px; color:var(--txt-primary);">11:00 – 13:30</h4>
+                  <p style="font-size:0.82rem; color:var(--txt-secondary); margin:0;">Sunday Celebration Service</p>
+                </div>
+ 
+                <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-color); border-radius:8px; padding:18px 20px;">
+                  <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--accent); font-weight:700;">Tuesdays</span>
+                  <h4 style="font-size:1.2rem; margin:6px 0 4px; color:var(--txt-primary);">17:30 – 19:00</h4>
+                  <p style="font-size:0.82rem; color:var(--txt-secondary); margin:0;">Partners Service</p>
+                </div>
+ 
+                <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-color); border-radius:8px; padding:18px 20px;">
+                  <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--accent); font-weight:700;">Thursdays</span>
+                  <h4 style="font-size:1.2rem; margin:6px 0 4px; color:var(--txt-primary);">17:30 – 19:00</h4>
+                  <p style="font-size:0.82rem; color:var(--txt-secondary); margin:0;">Midweek Service</p>
+                </div>
+ 
+                <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-color); border-radius:8px; padding:18px 20px;">
+                  <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--accent); font-weight:700;">Weekdays</span>
+                  <h4 style="font-size:1.2rem; margin:6px 0 4px; color:var(--txt-primary);">06:45 – 07:45</h4>
+                  <p style="font-size:0.82rem; color:var(--txt-secondary); margin:0;">Morning Prayers</p>
+                </div>
+ 
+                <div style="background:rgba(255,255,255,0.02); border:1px solid var(--border-color); border-radius:8px; padding:18px 20px;">
+                  <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--accent); font-weight:700;">Weekdays</span>
+                  <h4 style="font-size:1.2rem; margin:6px 0 4px; color:var(--txt-primary);">13:00 – 14:00</h4>
+                  <p style="font-size:0.82rem; color:var(--txt-secondary); margin:0;">Lunch Hour Service</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-container events-layout-grid">
+            <div class="events-main-feed">
+              <h2 class="area-title"><i data-lucide="calendar"></i> Upcoming Gatherings &amp; Outreaches</h2>
+              <div class="events-cards-grid" id="events-feed-container">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+            
+            <!-- Calendar Card -->
+            <div class="events-sidebar">
+              <div class="glass-card calendar-card">
+                <div class="calendar-header">
+                  <h3 id="calendar-month-year">Services Calendar</h3>
+                </div>
+                <div class="calendar-weekdays">
+                  <div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div>
+                </div>
+                <div class="calendar-days" id="calendar-days-grid">
+                  <!-- Populated by JS -->
+                </div>
+                <div class="calendar-legend">
+                  <span class="legend-dot active"></span> Service / Outreach Day
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= GIVE / DONATE TAB ================= -->
+        <section id="tab-give" class="tab-content">
+          <div class="section-header-container" style="background-image: linear-gradient(rgba(8,8,8,0.65), rgba(8,8,8,0.90)), url('/images/church-service-3.jpg')">
+            <h1 class="page-title">Giving &amp; Partnerships</h1>
+            <p class="page-desc">Partner with Rhema Word Ministries. Honor God with your Tithes, Offerings, or support the People's Foundation community relief missions.</p>
+          </div>
+
+          <div class="section-container give-portal-grid">
+            <div class="give-card-info">
+              <h2>Generosity Shifts Atmospheres</h2>
+              <p>Your financial support fuels our community food outreaches, church services, worship ministry, and builds the charitable foundation of the People's Foundation.</p>
+              
+              <div class="scripture-badge give-scripture">
+                <blockquote>"Bring all the tithes into the storehouse, that there may be food in My house, and try Me now in this..."</blockquote>
+                <cite>— Malachi 3:10</cite>
+              </div>
+
+              <!-- Payment Channels Badges -->
+              <div class="payment-channels">
+                <h4>Accepted Direct Methods</h4>
+                <div class="channel-logos">
+                  <span class="pay-tag ecocash">EcoCash Direct</span>
+                  <span class="pay-tag card">Direct Bank Transfer</span>
+                  <span class="pay-tag onemoney">WhatsApp POP</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Giving Placard Card -->
+            <div class="glass-card giving-placard-card">
+              <div class="placard-header">
+                <div class="placard-badge"><i data-lucide="shield-check"></i> Official Giving Channels</div>
+                <h3>Ministry Giving &amp; Banking Details</h3>
+                <p class="placard-subtitle">Please make all your tithes, offerings, pledges, and charity contributions to the following official accounts:</p>
+              </div>
+
+              <div class="placard-grid">
+                <!-- Channel 1: Bank Transfer -->
+                <div class="placard-channel-card">
+                  <div class="channel-icon-header">
+                    <div class="channel-icon"><i data-lucide="building-2"></i></div>
+                    <div>
+                      <h4>Bank Account</h4>
+                      <span class="channel-tag">Direct Bank Deposit / Transfer</span>
+                    </div>
+                  </div>
+                  <div class="channel-data-list">
+                    <div class="data-row">
+                      <span class="data-label">Account Name:</span>
+                      <span class="data-val">Apostle Keith Bhehane</span>
+                    </div>
+                    <div class="data-row">
+                      <span class="data-label">Account Number:</span>
+                      <span class="data-val highlight-val" id="val-bank-acc">1125697156</span>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-copy-channel" data-copy-target="val-bank-acc">
+                    <i data-lucide="copy"></i> <span>Copy Account Number</span>
+                  </button>
+                </div>
+
+                <!-- Channel 2: EcoCash Mobile Money -->
+                <div class="placard-channel-card">
+                  <div class="channel-icon-header">
+                    <div class="channel-icon ecocash-icon"><i data-lucide="smartphone"></i></div>
+                    <div>
+                      <h4>EcoCash Mobile Money</h4>
+                      <span class="channel-tag ecocash-tag">EcoCash Direct</span>
+                    </div>
+                  </div>
+                  <div class="channel-data-list">
+                    <div class="data-row">
+                      <span class="data-label">Registered Name:</span>
+                      <span class="data-val">Apostle Keith Bhehane</span>
+                    </div>
+                    <div class="data-row">
+                      <span class="data-label">EcoCash Number:</span>
+                      <span class="data-val highlight-val" id="val-ecocash-num">0775 765 870</span>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-copy-channel" data-copy-target="val-ecocash-num">
+                    <i data-lucide="copy"></i> <span>Copy EcoCash Number</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Reference & Confirmation Guidance -->
+              <div class="placard-notice-box">
+                <div class="notice-item">
+                  <i data-lucide="info" class="notice-icon"></i>
+                  <div>
+                    <strong>Payment Reference Guide:</strong>
+                    <p>When transferring, please use reference <em>"Tithe"</em>, <em>"Offering"</em>, or <em>"Foundation Charity"</em> with your name.</p>
+                  </div>
+                </div>
+                <div class="notice-actions">
+                  <a href="https://wa.me/263775662844?text=Hello%20Apostle%20Keith%20%26%20Pastor%20Talent%2C%20I%20have%20made%20a%20giving%20transfer.%20Here%20is%20my%20proof%20of%20payment..." target="_blank" class="btn btn-whatsapp">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2.25c-5.38 0-9.75 4.37-9.75 9.75 0 2.203.734 4.242 1.97 5.88l-1.282 3.84 3.974-1.258a9.713 9.713 0 0 0 5.088 1.443c5.38 0 9.75-4.37 9.75-9.75 0-5.38-4.37-9.75-9.75-9.75zm5.556 13.914c-.244.686-1.233 1.255-1.71 1.305-.444.047-.992.083-2.923-.687-2.47-1.02-4.042-3.52-4.166-3.684-.12-.164-.992-1.32-.992-2.52 0-1.2.628-1.79.852-2.03.224-.24.496-.3.664-.3.168 0 .336 0 .484.007.148.006.348-.056.544.417.2.482.684 1.666.744 1.786.06.12.098.26.02.42-.08.16-.176.35-.35.55-.176.2-.368.45-.528.6-.176.16-.36.34-.152.697.208.35.922 1.52 1.978 2.46 1.356 1.21 2.502 1.583 2.854 1.76.35.176.554.148.762-.09.208-.24.896-1.045 1.134-1.4.24-.356.48-.3.8-.18.32.12 2.034 1.002 2.38 1.176.348.174.58.26.664.4.084.14.084.81-.16 1.496z"/></svg>
+                    Send Proof of Payment via WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= CONNECT / CONTACT TAB ================= -->
+        <section id="tab-contact" class="tab-content">
+          <div class="section-header-container" style="background-image: linear-gradient(rgba(8,8,8,0.65), rgba(8,8,8,0.90)), url('/images/church-worship-2.jpg')">
+            <h1 class="page-title">Connect With Us</h1>
+            <p class="page-desc">Have a prayer request? Want to join our physical services in Bulawayo? Reach out to us directly.</p>
+          </div>
+
+          <div class="section-container contact-info-grid">
+            <div class="contact-card-info">
+              <h2>Contact Channels</h2>
+              
+              <div class="info-list">
+                <div class="info-item">
+                  <div class="info-icon"><i data-lucide="map-pin"></i></div>
+                  <div class="info-detail">
+                    <h4>Church Location</h4>
+                    <p style="color:var(--txt-primary); font-weight:500;">Luxor House Building (Basement)</p>
+                    <p>Cnr 9th Ave and Fife Street, Bulawayo, Zimbabwe</p>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon"><i data-lucide="mail"></i></div>
+                  <div class="info-detail">
+                    <h4>Email</h4>
+                    <a href="mailto:rhemawordministrieszim@gmail.com" class="contact-link">rhemawordministrieszim@gmail.com</a>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon"><i data-lucide="phone"></i></div>
+                  <div class="info-detail">
+                    <h4>Phone / WhatsApp</h4>
+                    <a href="tel:+263775662844" class="contact-link">+263 775 662 844</a>
+                    <a href="tel:+263712766660" class="contact-link" style="display:block;margin-top:4px">+263 712 766 660</a>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                  </div>
+                  <div class="info-detail">
+                    <h4>Facebook — Apostle Keith</h4>
+                    <a href="https://www.facebook.com/ApostleKeithBhehane" target="_blank" class="contact-link">Keith Millionair Bhehane</a>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                  </div>
+                  <div class="info-detail">
+                    <h4>Facebook — Ministry</h4>
+                    <a href="https://www.facebook.com/rhemawordministrieszim/" target="_blank" class="contact-link">Rhema Word Ministries Zim</a>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.74-3.94-1.74-.22-.2-.42-.43-.61-.67-.02 3.48-.01 6.96-.02 10.43-.11 2.37-1.39 4.71-3.66 5.58-2.6 1.08-5.88.58-7.92-1.44-2.22-2.19-2.31-6.01-.2-8.3 1.63-1.87 4.25-2.52 6.64-1.79v4.11c-1.3-.47-2.82-.17-3.79.8-.97.97-1.12 2.61-.34 3.7.77 1.14 2.32 1.5 3.58.9 1.15-.51 1.75-1.78 1.72-3.03V0z"/></svg>
+                  </div>
+                  <div class="info-detail">
+                    <h4>TikTok — Apostle Keith</h4>
+                    <a href="https://www.tiktok.com/@apostlekeithbillionaire" target="_blank" class="contact-link">@ApostleKeithBillionaire</a>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.74-3.94-1.74-.22-.2-.42-.43-.61-.67-.02 3.48-.01 6.96-.02 10.43-.11 2.37-1.39 4.71-3.66 5.58-2.6 1.08-5.88.58-7.92-1.44-2.22-2.19-2.31-6.01-.2-8.3 1.63-1.87 4.25-2.52 6.64-1.79v4.11c-1.3-.47-2.82-.17-3.79.8-.97.97-1.12 2.61-.34 3.7.77 1.14 2.32 1.5 3.58.9 1.15-.51 1.75-1.78 1.72-3.03V0z"/></svg>
+                  </div>
+                  <div class="info-detail">
+                    <h4>TikTok — Ministry</h4>
+                    <a href="https://www.tiktok.com/@rhemawordministries" target="_blank" class="contact-link">@RhemaWordMinistries</a>
+                  </div>
+                </div>
+
+                <div class="info-item">
+                  <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  </div>
+                  <div class="info-detail">
+                    <h4>Instagram</h4>
+                    <a href="https://www.instagram.com/apostlekeithbhehane" target="_blank" class="contact-link">@ApostleKeithBhehane</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick WhatsApp Box -->
+              <div class="whatsapp-callout-box glass-card">
+                <div class="wa-header">
+                  <i data-lucide="message-square" class="wa-icon"></i>
+                  <h3>Instant Counseling & Prayers</h3>
+                </div>
+                <p>Reach out to Apostle Keith's office directly via WhatsApp. Type a custom message below and dispatch it instantly.</p>
+                
+                <div class="wa-box-inputs">
+                  <textarea id="wa-custom-msg" placeholder="Write your prayer request, testimony, or inquiry..."></textarea>
+                  <button id="btn-wa-dispatch" class="btn btn-whatsapp btn-block">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2.25c-5.38 0-9.75 4.37-9.75 9.75 0 2.203.734 4.242 1.97 5.88l-1.282 3.84 3.974-1.258a9.713 9.713 0 0 0 5.088 1.443c5.38 0 9.75-4.37 9.75-9.75 0-5.38-4.37-9.75-9.75-9.75zm5.556 13.914c-.244.686-1.233 1.255-1.71 1.305-.444.047-.992.083-2.923-.687-2.47-1.02-4.042-3.52-4.166-3.684-.12-.164-.992-1.32-.992-2.52 0-1.2.628-1.79.852-2.03.224-.24.496-.3.664-.3.168 0 .336 0 .484.007.148.006.348-.056.544.417.2.482.684 1.666.744 1.786.06.12.098.26.02.42-.08.16-.176.35-.35.55-.176.2-.368.45-.528.6-.176.16-.36.34-.152.697.208.35.922 1.52 1.978 2.46 1.356 1.21 2.502 1.583 2.854 1.76.35.176.554.148.762-.09.208-.24.896-1.045 1.134-1.4.24-.356.48-.3.8-.18.32.12 2.034 1.002 2.38 1.176.348.174.58.26.664.4.084.14.084.81-.16 1.496z"/></svg> Open WhatsApp Chat
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email Prayer Form -->
+            <div class="glass-card contact-form-card">
+              <h3>Send a Digital Message</h3>
+              <form id="contact-email-form">
+                <div class="form-group">
+                  <label for="contact-name">Your Name</label>
+                  <input type="text" id="contact-name" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="contact-email">Email Address</label>
+                  <input type="email" id="contact-email" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-subject">Subject</label>
+                  <select id="contact-subject">
+                    <option value="Prayer Request">Prayer Request</option>
+                    <option value="Charity Partners">Charity Partnership</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-message">Message</label>
+                  <textarea id="contact-message" rows="5" placeholder="Enter your detailed message here..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                  <i data-lucide="send"></i> Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ================= ADMIN GATE OVERLAY ================= -->
+      <div class="admin-overlay" id="admin-gate-overlay">
+        <!-- Log-In Card -->
+        <div class="glass-card admin-dialog" id="admin-login-dialog">
+          <div class="dialog-header">
+            <h3><i data-lucide="lock"></i> Admin Authorization</h3>
+            <button class="btn-close-dialog" id="btn-close-admin-gate"><i data-lucide="x"></i></button>
+          </div>
+          <p class="dialog-info">Access restricted to Rhema Word Ministries site managers.</p>
+          
+          <form id="admin-login-form">
+            <div class="form-group">
+              <label for="admin-username">Admin Username</label>
+              <input type="text" id="admin-username" required>
+            </div>
+            <div class="form-group">
+              <label for="admin-password">Password</label>
+              <input type="password" id="admin-password" required>
+            </div>
+            <div id="login-error-msg" class="error-msg"></div>
+            <button type="submit" class="btn btn-primary btn-block">Authorize Portal</button>
+          </form>
+        </div>
+
+        <!-- Dashboard Panel -->
+        <div class="glass-card admin-dashboard" id="admin-dashboard-panel">
+          <div class="dashboard-header">
+            <div class="header-titles">
+              <h2><i data-lucide="layout-dashboard"></i> Ministry Control Center</h2>
+              <span class="status-indicator">Session: Authorized</span>
+            </div>
+            <div class="header-actions">
+              <button class="btn btn-outline" id="btn-admin-logout">Log Out</button>
+              <button class="btn-close-dialog" id="btn-close-admin-dashboard"><i data-lucide="x"></i></button>
+            </div>
+          </div>
+
+          <!-- Dashboard Tabs -->
+          <div class="dashboard-grid-layout">
+            <aside class="dashboard-sidebar">
+              <button class="dash-tab-btn active" data-dash-tab="inquiries">
+                <i data-lucide="inbox" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"></i> Prayer Inbox <span class="admin-badge-count unread" id="inbox-unread-badge">0</span>
+              </button>
+              <button class="dash-tab-btn" data-dash-tab="announcement">
+                <i data-lucide="bell" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"></i> Live Banner
+              </button>
+              <button class="dash-tab-btn" data-dash-tab="servicetimes">
+                <i data-lucide="clock" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"></i> Service Times &amp; Venue
+              </button>
+              <button class="dash-tab-btn" data-dash-tab="testimonies">
+                <i data-lucide="sparkles" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"></i> Testimonies
+              </button>
+              <button class="dash-tab-btn" data-dash-tab="gallery">
+                <i data-lucide="image" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"></i> Photo Gallery
+              </button>
+              <button class="dash-tab-btn" data-dash-tab="events">
+                <i data-lucide="calendar" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"></i> Events &amp; Services
+              </button>
+              <button class="dash-tab-btn" data-dash-tab="scriptures">
+                <i data-lucide="book-open" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"></i> Daily Scriptures
+              </button>
+              <button class="dash-tab-btn" data-dash-tab="blogs">
+                <i data-lucide="book-marked" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"></i> Weekly Word
+              </button>
+              <button class="dash-tab-btn" data-dash-tab="foundation">
+                <i data-lucide="heart" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"></i> Foundation Ledger
+              </button>
+              <button class="dash-tab-btn" data-dash-tab="donations">
+                <i data-lucide="credit-card" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"></i> Donations &amp; Export
+              </button>
+            </aside>
+
+            <main class="dashboard-main-view">
+
+              <!-- Dashboard Tab: Prayer Inbox (Module 1) -->
+              <div class="dash-tab-pane active" id="dash-pane-inquiries">
+                <div class="pane-header">
+                  <div>
+                    <h3 style="margin-bottom:4px;">Prayer Requests &amp; Inquiries Inbox</h3>
+                    <p style="font-size:0.84rem; color:var(--txt-muted); margin:0;">Incoming spiritual requests and counselor contact forms submitted by website visitors.</p>
+                  </div>
+                  <div style="display:flex; gap:8px;">
+                    <button class="admin-btn-export" id="btn-export-inquiries"><i data-lucide="download"></i> Export CSV</button>
+                  </div>
+                </div>
+                <div id="admin-inbox-list">
+                  <!-- Dynamic Inquiries Cards -->
+                </div>
+              </div>
+
+              <!-- Dashboard Tab: Live Announcement Banner (Module 3) -->
+              <div class="dash-tab-pane" id="dash-pane-announcement">
+                <div class="pane-header">
+                  <div>
+                    <h3 style="margin-bottom:4px;">Live Announcement / Alert Banner</h3>
+                    <p style="font-size:0.84rem; color:var(--txt-muted); margin:0;">Display an urgent banner at the top of the website for live broadcasts, conference notices, or urgent reminders.</p>
+                  </div>
+                </div>
+                <form id="admin-announcement-form" class="glass-card" style="padding:24px; max-width:680px;">
+                  <div class="admin-switch-container">
+                    <label class="admin-switch">
+                      <input type="checkbox" id="admin-announcement-enabled">
+                      <span class="admin-slider"></span>
+                    </label>
+                    <div>
+                      <strong style="display:block; font-size:0.92rem; color:#fff;">Enable Top Announcement Banner</strong>
+                      <span style="font-size:0.78rem; color:var(--txt-muted);">When switched on, the banner appears across all pages of the website.</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="admin-announcement-badge">Badge Label (e.g. "Live Notice", "Streaming Now", "Conference")</label>
+                    <input type="text" id="admin-announcement-badge" placeholder="Notice" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="admin-announcement-text">Banner Announcement Message</label>
+                    <textarea id="admin-announcement-text" rows="2" placeholder="Special Miracle & Prophetic Service this Sunday at 11:00 AM!" required></textarea>
+                  </div>
+
+                  <div class="form-group-row">
+                    <div class="form-group" style="flex:1;">
+                      <label for="admin-announcement-btn-text">Button Label</label>
+                      <input type="text" id="admin-announcement-btn-text" placeholder="Details" required>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                      <label for="admin-announcement-btn-link">Button Link (e.g. #events, #give, https://...)</label>
+                      <input type="text" id="admin-announcement-btn-link" placeholder="#events" required>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Save Announcement Settings</button>
+                </form>
+              </div>
+
+              <!-- Dashboard Tab: Service Times & Location Editor (Module 4) -->
+              <div class="dash-tab-pane" id="dash-pane-servicetimes">
+                <div class="pane-header">
+                  <div>
+                    <h3 style="margin-bottom:4px;">Official Service Times &amp; Church Location</h3>
+                    <p style="font-size:0.84rem; color:var(--txt-muted); margin:0;">Updating these values instantly synchronizes the Events page, contact details, and website footer.</p>
+                  </div>
+                </div>
+                <form id="admin-servicetimes-form" class="glass-card" style="padding:24px; max-width:720px;">
+                  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px;">
+                    <div class="form-group">
+                      <label for="admin-time-sunday">Sunday Service Time</label>
+                      <input type="text" id="admin-time-sunday" value="11:00 – 13:30" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="admin-time-partners">Tuesdays (Partners Service)</label>
+                      <input type="text" id="admin-time-partners" value="17:30 – 19:00" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="admin-time-midweek">Thursdays (Midweek Service)</label>
+                      <input type="text" id="admin-time-midweek" value="17:30 – 19:00" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="admin-time-morning">Morning Prayers (Weekdays)</label>
+                      <input type="text" id="admin-time-morning" value="06:45 – 07:45" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="admin-time-lunch">Lunch Hour Service (Weekdays)</label>
+                      <input type="text" id="admin-time-lunch" value="13:00 – 14:00" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="admin-phone-primary">Primary Phone / WhatsApp</label>
+                      <input type="text" id="admin-phone-primary" value="+263 775 662 844" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="admin-church-address">Church Physical Address</label>
+                    <input type="text" id="admin-church-address" value="Luxor House Building (Basement), Cnr 9th Ave & Fife Street, Bulawayo, Zimbabwe" required>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Save Service Times &amp; Venue</button>
+                </form>
+              </div>
+
+              <!-- Dashboard Tab: Member Testimonies (Module 5) -->
+              <div class="dash-tab-pane" id="dash-pane-testimonies">
+                <div class="pane-header">
+                  <div>
+                    <h3 style="margin-bottom:4px;">Manage Member Testimonies</h3>
+                    <p style="font-size:0.84rem; color:var(--txt-muted); margin:0;">Feature miracle reports and testimonies from church members and partners.</p>
+                  </div>
+                  <button class="btn btn-primary btn-sm" id="btn-add-testimony">+ Add Testimony</button>
+                </div>
+                <div class="table-scroll-container">
+                  <table class="dashboard-table">
+                    <thead>
+                      <tr>
+                        <th>Member Name</th>
+                        <th>Location</th>
+                        <th>Miracle / Testimony Summary</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-table-testimonies">
+                      <!-- Dynamic -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Dashboard Tab: Photo Gallery Manager (Module 2) -->
+              <div class="dash-tab-pane" id="dash-pane-gallery">
+                <div class="pane-header">
+                  <div>
+                    <h3 style="margin-bottom:4px;">Photo Gallery &amp; Foundation Acts Manager</h3>
+                    <p style="font-size:0.84rem; color:var(--txt-muted); margin:0;">Add, manage, or remove photos displayed in the Foundation Acts visual journal.</p>
+                  </div>
+                  <button class="btn btn-primary btn-sm" id="btn-add-gallery-photo">+ Add Photo to Gallery</button>
+                </div>
+                <div class="table-scroll-container">
+                  <table class="dashboard-table">
+                    <thead>
+                      <tr>
+                        <th>Photo</th>
+                        <th>Title / Caption</th>
+                        <th>Category</th>
+                        <th>Date / Tag</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-table-gallery">
+                      <!-- Dynamic -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Dashboard Tab: Events -->
+              <div class="dash-tab-pane" id="dash-pane-events">
+                <div class="pane-header">
+                  <h3>Manage Ministry Events</h3>
+                  <div style="display:flex; gap:8px;">
+                    <button class="admin-btn-export" id="btn-export-events"><i data-lucide="download"></i> Export CSV</button>
+                    <button class="btn btn-primary btn-sm" id="btn-add-event">+ Schedule Event</button>
+                  </div>
+                </div>
+                <div class="table-scroll-container">
+                  <table class="dashboard-table">
+                    <thead>
+                      <tr>
+                        <th>Event Title</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-table-events">
+                      <!-- Dynamic -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Dashboard Tab: Scriptures -->
+              <div class="dash-tab-pane" id="dash-pane-scriptures">
+                <div class="pane-header">
+                  <h3>Manage Daily Scriptures</h3>
+                  <button class="btn btn-primary btn-sm" id="btn-add-scripture">+ Add Scripture</button>
+                </div>
+                <div class="table-scroll-container">
+                  <table class="dashboard-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Reference</th>
+                        <th>Scripture Text</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-table-scriptures">
+                      <!-- Dynamic -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Dashboard Tab: Blogs -->
+              <div class="dash-tab-pane" id="dash-pane-blogs">
+                <div class="pane-header">
+                  <h3>Manage Blog &amp; Weekly Word</h3>
+                  <button class="btn btn-primary btn-sm" id="btn-add-blog">+ Write Weekly Word</button>
+                </div>
+                <div class="table-scroll-container">
+                  <table class="dashboard-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Author</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-table-blogs">
+                      <!-- Dynamic -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Dashboard Tab: Foundation -->
+              <div class="dash-tab-pane" id="dash-pane-foundation">
+                <div class="pane-header">
+                  <h3>Manage Charity Outreaches</h3>
+                  <div style="display:flex; gap:8px;">
+                    <button class="admin-btn-export" id="btn-export-charity"><i data-lucide="download"></i> Export CSV</button>
+                    <button class="btn btn-primary btn-sm" id="btn-add-encounter">+ Log Outreach</button>
+                  </div>
+                </div>
+                <div class="table-scroll-container">
+                  <table class="dashboard-table">
+                    <thead>
+                      <tr>
+                        <th>Mission</th>
+                        <th>Target</th>
+                        <th>Groceries Distributed</th>
+                        <th>Cost</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-table-foundation">
+                      <!-- Dynamic -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Dashboard Tab: Donations & Financials (Module 7) -->
+              <div class="dash-tab-pane" id="dash-pane-donations">
+                <div class="pane-header">
+                  <div>
+                    <h3 style="margin-bottom:4px;">Donation Metrics &amp; Giving Records</h3>
+                    <p style="font-size:0.84rem; color:var(--txt-muted); margin:0;">Track all tithes, offerings, and charity contributions made online.</p>
+                  </div>
+                  <button class="admin-btn-export" id="btn-export-donations"><i data-lucide="download"></i> Export Financials CSV</button>
+                </div>
+                <div class="donation-stats-row">
+                  <div class="metric-card glass-card">
+                    <h4>Total Received</h4>
+                    <h2 id="dash-total-raised">$14,500</h2>
+                  </div>
+                  <div class="metric-card glass-card">
+                    <h4>Mealie Meal Bags Funded (Est.)</h4>
+                    <h2 id="dash-total-bags">1,250</h2>
+                  </div>
+                </div>
+                <h4 style="margin-top: 24px; margin-bottom:12px;">Donation Ledger</h4>
+                <div class="table-scroll-container">
+                  <table class="dashboard-table">
+                    <thead>
+                      <tr>
+                        <th>Donor</th>
+                        <th>Email</th>
+                        <th>Amount</th>
+                        <th>Destination</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-table-donations">
+                      <!-- Dynamic -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </main>
+          </div>
+        </div>
+
+            </main>
+          </div>
+        </div>
+
+        <!-- Forms Modals for Creating/Editing Data in Admin Control Panel -->
+        <div class="glass-card admin-form-modal" id="admin-entry-form-modal">
+          <div class="dialog-header">
+            <h3 id="form-modal-title">Create Entry</h3>
+            <button class="btn-close-dialog" id="btn-close-entry-modal"><i data-lucide="x"></i></button>
+          </div>
+          <form id="admin-entry-form">
+            <!-- Fields generated dynamically by js depending on open model type -->
+            <div id="form-fields-container"></div>
+            <button type="submit" class="btn btn-primary btn-block">Save to Database</button>
+          </form>
+         </div>
+        
+        <!-- Refund Modal Dialog -->
+        <div class="glass-card admin-form-modal" id="admin-refund-modal">
+          <div class="dialog-header">
+            <h3><i data-lucide="refresh-cw"></i> Process Refund</h3>
+            <button class="btn-close-dialog" id="btn-close-refund-modal"><i data-lucide="x"></i></button>
+          </div>
+          <form id="admin-refund-form">
+            <div class="form-group">
+              <label>Donor Name</label>
+              <input type="text" id="refund-donor-name" disabled style="opacity:0.7;">
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="refund-donor-email" disabled style="opacity:0.7;">
+            </div>
+            <div class="form-group">
+              <label>Original Paid Amount</label>
+              <input type="text" id="refund-original-amount" disabled style="opacity:0.7;">
+            </div>
+            <div class="form-group">
+              <label>Refund Amount (USD)</label>
+              <div class="currency-input">
+                <span class="input-symbol">$</span>
+                <input type="number" id="refund-amount" min="1" step="0.01" required>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" id="btn-submit-refund">Execute Refund & Send Email</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Footer — 3-column editorial grid -->
+      <footer class="main-footer">
+        <div class="footer-container">
+          <div class="footer-grid">
+
+            <!-- Col 1: Ministry Info -->
+            <div class="footer-col">
+              <div class="footer-brand">
+                <img src="/images/logo-badge.jpg" alt="RWM Logo" class="footer-logo-img">
+                <span>Rhema Word Ministries</span>
+              </div>
+              <p class="footer-tagline">An apostolic ministry dedicated to preaching faith, expanding charity, and witnessing signs, wonders &amp; miracles across Zimbabwe and beyond.</p>
+              <div class="footer-social-row" style="margin-top:20px">
+                <a href="https://www.facebook.com/rhemawordministrieszim/" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Facebook — Rhema Word Ministries Zim" title="Rhema Word Ministries Zim">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@apostlekeithbillionaire" target="_blank" rel="noopener" class="footer-social-btn" aria-label="TikTok — Apostle Keith Billionaire" title="@ApostleKeithBillionaire">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.24 8.24 0 004.83 1.56V6.78a4.85 4.85 0 01-1.06-.09z"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@rhemawordministries" target="_blank" rel="noopener" class="footer-social-btn" aria-label="TikTok — Rhema Word Ministries" title="@RhemaWordMinistries">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.24 8.24 0 004.83 1.56V6.78a4.85 4.85 0 01-1.06-.09z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/apostlekeithbhehane" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram — Apostle Keith Bhehane" title="@ApostleKeithBhehane">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a href="https://wa.me/263775662844" target="_blank" rel="noopener" class="footer-social-btn" aria-label="WhatsApp" title="WhatsApp: +263 775 662 844">
+                  <i data-lucide="message-circle"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Col 2: Quick Links -->
+            <div class="footer-col">
+              <p class="footer-col-title">Navigate</p>
+              <div class="footer-links">
+                <a href="#home" data-nav-target="home">Home</a>
+                <a href="#about" data-nav-target="about">About Apostle Keith</a>
+                <a href="#foundation" data-nav-target="foundation">People's Foundation</a>
+                <a href="#foundation-acts" data-nav-target="foundation-acts">Foundation Acts</a>
+                <a href="#blog" data-nav-target="blog">Weekly Word</a>
+                <a href="#events" data-nav-target="events">Services &amp; Events</a>
+                <a href="#give" data-nav-target="give">Give / Donate</a>
+                <a href="#contact" data-nav-target="contact">Connect With Us</a>
+              </div>
+            </div>
+
+            <!-- Col 3: Contact + Giving -->
+            <div class="footer-col">
+              <p class="footer-col-title">Connect</p>
+              <div class="footer-links">
+                <a href="mailto:rhemawordministrieszim@gmail.com">rhemawordministrieszim@gmail.com</a>
+                <a href="https://wa.me/263775662844" target="_blank">WhatsApp: +263 775 662 844</a>
+                <a href="#give" data-nav-target="give">Partner / Tithe Online</a>
+              </div>
+              <p class="footer-col-title" style="margin-top:28px">Services in Bulawayo</p>
+              <div class="footer-links">
+                <span style="color:var(--txt-muted);font-size:0.85rem">Sundays — 11:00 AM – 1:30 PM</span>
+                <span style="color:var(--txt-muted);font-size:0.85rem">Tuesdays &amp; Thursdays — 5:30 PM</span>
+                <span style="color:var(--txt-muted);font-size:0.85rem">Weekdays — Morning &amp; Lunch Prayers</span>
+                <span style="color:var(--accent);font-size:0.82rem">Luxor House Basement, Bulawayo</span>
+              </div>
+            </div>
+
+          </div><!-- /.footer-grid -->
+
+          <div class="footer-bottom">
+            <p class="copyright">&copy; 2026 Rhema Word Ministries International. All Rights Reserved.</p>
+            <p class="copyright" style="margin-top:6px;font-size:0.75rem;">
+              Made by <a href="https://hakili.co.zw" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">Hakili.co.zw</a>
+            </p>
+             <div class="footer-legal-links">
+              <a href="#privacy" id="btn-privacy-policy">Privacy Policy</a>
+              <a href="#terms" id="btn-terms-conditions">Terms of Use</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Privacy Policy Modal -->
+      <div class="admin-overlay" id="privacy-policy-overlay">
+        <div class="glass-card" style="max-width: 800px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 40px; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius-sm); box-shadow: var(--shadow-lg);">
+          <button class="btn-close-dialog" id="btn-close-privacy" style="position: absolute; top: 24px; right: 24px; font-size: 1.5rem; cursor: pointer; background: transparent; border: none; color: var(--txt-secondary);">&times;</button>
+          
+          <h2 style="font-family: var(--font-heading); color: var(--accent); margin-bottom: 12px; font-size: 1.8rem; font-weight: 700;">Privacy Policy</h2>
+          <p style="font-size: 0.88rem; color: var(--txt-muted); margin-bottom: 30px;">Last updated: August 15, 2026</p>
+          
+          <div class="privacy-content" style="color: var(--txt-primary); font-size: 0.92rem; line-height: 1.7; text-align: left;">
+            <p style="margin-bottom: 16px;">This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
+            <p style="margin-bottom: 24px;">We use Your Personal Data to provide and improve the Service. We collect, use, and disclose Your information as described in this Privacy Policy and, where required by applicable law, only where We have a valid legal basis to do so, including Your consent (where consent is required).</p>
+
+            <h3 style="color: var(--accent); margin-top: 30px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Interpretation and Definitions</h3>
+            <h4 style="font-weight: 600; margin-top: 16px; margin-bottom: 8px;">Interpretation</h4>
+            <p style="margin-bottom: 16px;">The words whose initial letters are capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+            
+            <h4 style="font-weight: 600; margin-top: 16px; margin-bottom: 8px;">Definitions</h4>
+            <p style="margin-bottom: 12px;">For the purposes of this Privacy Policy:</p>
+            <ul style="padding-left: 20px; margin-bottom: 24px; list-style-type: disc;">
+              <li style="margin-bottom: 8px;"><strong>Account</strong> means a unique account created for You to access Our Service or parts of Our Service.</li>
+              <li style="margin-bottom: 8px;"><strong>Affiliate</strong> means an entity that controls, is controlled by, or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</li>
+              <li style="margin-bottom: 8px;"><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Privacy Policy) refers to Rhema Word Ministries, Luxor House Basement, Cnr 9th Ave &amp; Fife Street, Bulawayo, Zimbabwe.</li>
+              <li style="margin-bottom: 8px;"><strong>Cookies</strong> are small files that are placed on Your computer, mobile device or any other device by a website, containing the details of Your browsing history on that website, among its many uses.</li>
+              <li style="margin-bottom: 8px;"><strong>Country/State</strong> refers to: Zimbabwe.</li>
+              <li style="margin-bottom: 8px;"><strong>Device</strong> means any device that can access the Service, such as a computer, a cell phone or a digital tablet.</li>
+              <li style="margin-bottom: 8px;"><strong>Personal Data</strong> (or "Personal Information") is any information that relates to an identified or identifiable individual. We use "Personal Data" and "Personal Information" interchangeably unless a law uses a specific term.</li>
+              <li style="margin-bottom: 8px;"><strong>Service</strong> refers to the Website.</li>
+              <li style="margin-bottom: 8px;"><strong>Service Provider</strong> means any natural or legal person who processes the data on behalf of the Company. It refers to third-party companies or individuals employed by the Company to facilitate the Service, to provide the Service on behalf of the Company, to perform services related to the Service or to assist the Company in analyzing how the Service is used.</li>
+              <li style="margin-bottom: 8px;"><strong>Usage Data</strong> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself (for example, the duration of a page visit).</li>
+              <li style="margin-bottom: 8px;"><strong>User</strong> means any individual who accesses or uses the Service.</li>
+              <li style="margin-bottom: 8px;"><strong>Website</strong> refers to Rhema Word Ministries, accessible from rhewordministries.co.zw.</li>
+              <li style="margin-bottom: 8px;"><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
+            </ul>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Collecting and Using Your Personal Information</h3>
+            <h4 style="font-weight: 600; margin-top: 16px; margin-bottom: 8px;">Types of Data Collected</h4>
+            <h5 style="font-weight: 600; margin-top: 12px; margin-bottom: 6px; color: var(--accent);">Personal Data</h5>
+            <p style="margin-bottom: 16px;">While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to: Email address, First name and last name, Phone number.</p>
+
+            <h5 style="font-weight: 600; margin-top: 12px; margin-bottom: 6px; color: var(--accent);">Usage Data</h5>
+            <p style="margin-bottom: 16px;">Usage Data is collected automatically when using the Service. It may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of Our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
+            <p style="margin-bottom: 16px;">When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device's unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.</p>
+
+            <h5 style="font-weight: 600; margin-top: 12px; margin-bottom: 6px; color: var(--accent);">Tracking Technologies and Cookies</h5>
+            <p style="margin-bottom: 16px;">We use tracking technologies (such as cookies) to track the activity and to improve Our Service. The technologies We use may include Cookies or Browser Cookies, and Web Beacons.</p>
+            <p style="margin-bottom: 16px;">Cookies can be "Persistent" or "Session" Cookies. Persistent Cookies remain on Your personal computer or mobile device when You go offline, while Session Cookies are deleted as soon as You close Your web browser.</p>
+            <p style="margin-bottom: 16px;">Where required by law, We use non-essential cookies only with Your consent. We use both Session and Persistent Cookies for Necessary / Essential Cookies, Cookies Policy / Notice Acceptance Cookies, and Functionality Cookies.</p>
+
+            <h4 style="font-weight: 600; margin-top: 24px; margin-bottom: 8px;">Use of Your Personal Data</h4>
+            <p style="margin-bottom: 16px;">The Company may use Personal Data for the following purposes: To provide and maintain Our Service, To manage Your Account, For the performance of a contract, To contact You, To provide You with news, special offers, and general information, To manage Your requests, For business transfers, and for other purposes such as data analysis.</p>
+
+            <h5 style="font-weight: 600; margin-top: 12px; margin-bottom: 6px; color: var(--accent);">Text Messages Privacy Notice</h5>
+            <p style="margin-bottom: 16px;">You have the option to receive text (SMS) messages from Us. If You opt in to text messages, We will send You updates, notifications, and other communications. No mobile information will be shared with or sold to third parties or affiliates for marketing or promotional purposes. The phone numbers and consent records We collect for texting are never shared with anyone for any purpose, except the Service Providers that technically have to handle them to deliver the texts. Consent to receive text messages is not a condition of any purchase or use of Our Service. Reply STOP to opt-out.</p>
+
+            <h4 style="font-weight: 600; margin-top: 24px; margin-bottom: 8px;">Retention of Your Personal Data</h4>
+            <p style="margin-bottom: 16px;">The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain Account Information, Customer Support Data, and Usage Data. When retention periods expire, We securely delete or anonymize Personal Data.</p>
+
+            <h4 style="font-weight: 600; margin-top: 24px; margin-bottom: 8px;">Transfer of Your Personal Data</h4>
+            <p style="margin-bottom: 16px;">Your information, including Personal Data, is processed at the Company's operating offices and in any other places where the parties involved in the processing are located. This means that this information may be transferred to — and maintained on — computers located outside of Your jurisdiction.</p>
+
+            <h4 style="font-weight: 600; margin-top: 24px; margin-bottom: 8px;">Delete Your Personal Data</h4>
+            <p style="margin-bottom: 16px;">You have the right to delete or request that We assist in deleting the Personal Data that We have collected about You.</p>
+
+            <h4 style="font-weight: 600; margin-top: 24px; margin-bottom: 8px;">Disclosure of Your Personal Data</h4>
+            <p style="margin-bottom: 16px;">Under certain circumstances, the Company may disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).</p>
+
+            <h4 style="font-weight: 600; margin-top: 24px; margin-bottom: 8px;">Security of Your Personal Data</h4>
+            <p style="margin-bottom: 16px;">The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage, is 100% secure.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Children's and Minors' Privacy</h3>
+            <p style="margin-bottom: 16px;">The Service is not directed to, and We do not knowingly collect Personal Information from, anyone under the age of 16. If We become aware that We have collected Personal Information from anyone under the age of 16, We will take steps to remove that information from Our servers as soon as reasonably possible.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Links to Other Websites</h3>
+            <p style="margin-bottom: 16px;">Our Service may contain links to other websites that are not operated by Us. We strongly advise You to review the Privacy Policy of every site You visit.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Changes to this Privacy Policy</h3>
+            <p style="margin-bottom: 16px;">We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Contact Us</h3>
+            <p style="margin-bottom: 12px;">If You have any questions about this Privacy Policy, You can contact Us:</p>
+            <ul style="padding-left: 20px; margin-bottom: 16px; list-style-type: disc;">
+              <li>By email: info@rhemaministries.co.zw</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terms and Conditions Modal -->
+      <div class="admin-overlay" id="terms-conditions-overlay">
+        <div class="glass-card" style="max-width: 800px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 40px; position: relative; border: 1px solid var(--border-color); border-radius: var(--radius-sm); box-shadow: var(--shadow-lg);">
+          <button class="btn-close-dialog" id="btn-close-terms" style="position: absolute; top: 24px; right: 24px; font-size: 1.5rem; cursor: pointer; background: transparent; border: none; color: var(--txt-secondary);">&times;</button>
+          
+          <h2 style="font-family: var(--font-heading); color: var(--accent); margin-bottom: 12px; font-size: 1.8rem; font-weight: 700;">Terms and Conditions</h2>
+          <p style="font-size: 0.88rem; color: var(--txt-muted); margin-bottom: 30px;">Last updated: August 15, 2026</p>
+          
+          <div class="terms-content" style="color: var(--txt-primary); font-size: 0.92rem; line-height: 1.7; text-align: left;">
+            <p style="margin-bottom: 16px;">Please read these terms and conditions carefully before using Our Service.</p>
+
+            <h3 style="color: var(--accent); margin-top: 30px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Interpretation and Definitions</h3>
+            <h4 style="font-weight: 600; margin-top: 16px; margin-bottom: 8px;">Interpretation</h4>
+            <p style="margin-bottom: 16px;">The words whose initial letters are capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+            
+            <h4 style="font-weight: 600; margin-top: 16px; margin-bottom: 8px;">Definitions</h4>
+            <p style="margin-bottom: 12px;">For the purposes of these Terms and Conditions:</p>
+            <ul style="padding-left: 20px; margin-bottom: 24px; list-style-type: disc;">
+              <li style="margin-bottom: 8px;"><strong>Affiliate</strong> means an entity that controls, is controlled by, or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</li>
+              <li style="margin-bottom: 8px;"><strong>Country/State</strong> refers to: Zimbabwe</li>
+              <li style="margin-bottom: 8px;"><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in these Terms and Conditions) refers to Rhema Word Ministries, Luxor House Basement, Cnr 9th Ave &amp; Fife Street, Bulawayo, Zimbabwe.</li>
+              <li style="margin-bottom: 8px;"><strong>Device</strong> means any device that can access the Service such as a computer, a cell phone or a digital tablet.</li>
+              <li style="margin-bottom: 8px;"><strong>Service</strong> refers to the Website.</li>
+              <li style="margin-bottom: 8px;"><strong>Terms and Conditions</strong> (also referred to as "Terms") means these Terms and Conditions, including any documents expressly incorporated by reference, which govern Your access to and use of the Service and form the entire agreement between You and the Company regarding the Service.</li>
+              <li style="margin-bottom: 8px;"><strong>Third-Party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third party that is displayed, included, made available, or linked to through the Service.</li>
+              <li style="margin-bottom: 8px;"><strong>Website</strong> refers to Rhema Word Ministries, accessible from rhewordministries.co.zw.</li>
+              <li style="margin-bottom: 8px;"><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
+            </ul>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Acknowledgment</h3>
+            <p style="margin-bottom: 16px;">These are the Terms and Conditions governing the use of this Service and the agreement between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.</p>
+            <p style="margin-bottom: 16px;">Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.</p>
+            <p style="margin-bottom: 16px;">By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.</p>
+            <p style="margin-bottom: 16px;">You represent that you are over the age of 18. The Company does not permit those under 18 to use the Service.</p>
+            <p style="margin-bottom: 24px;">Your access to and use of the Service is also subject to Our Privacy Policy, which describes how We collect, use, and disclose personal information. Please read Our Privacy Policy carefully before using Our Service.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Links to Other Websites</h3>
+            <p style="margin-bottom: 16px;">Our Service may contain links to third-party websites or services that are not owned or controlled by the Company.</p>
+            <p style="margin-bottom: 16px;">The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third-party websites or services. You further acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such websites or services.</p>
+            <p style="margin-bottom: 16px;">We strongly advise You to read the terms and conditions and privacy policies of any third-party websites or services that You visit.</p>
+            
+            <h4 style="font-weight: 600; margin-top: 16px; margin-bottom: 8px;">Links from a Third-Party Social Media Service</h4>
+            <p style="margin-bottom: 16px;">The Service may display, include, make available, or link to content or services provided by a Third-Party Social Media Service. A Third-Party Social Media Service is not owned or controlled by the Company, and the Company does not endorse or assume responsibility for any Third-Party Social Media Service.</p>
+            <p style="margin-bottom: 24px;">You acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with Your access to or use of any Third-Party Social Media Service, including any content, goods, or services made available through them. Your use of any Third-Party Social Media Service is governed by that Third-Party Social Media Service's terms and privacy policies.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Termination</h3>
+            <p style="margin-bottom: 24px;">We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions. Upon termination, Your right to use the Service will cease immediately.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Limitation of Liability</h3>
+            <p style="margin-bottom: 16px;">Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of these Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.</p>
+            <p style="margin-bottom: 24px;">To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of these Terms).</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">"AS IS" and "AS AVAILABLE" Disclaimer</h3>
+            <p style="margin-bottom: 16px;">The Service is provided to You "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company, on its own behalf and on behalf of its Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory or otherwise.</p>
+            <p style="margin-bottom: 24px;">Without limiting the foregoing, neither the Company nor any of the company's provider makes any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the Service, or the information, content, and materials or products included thereon; (ii) that the Service will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Service; or (iv) that the Service, its servers, the content, or e-mails sent from or on behalf of the Company are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful components.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Governing Law</h3>
+            <p style="margin-bottom: 24px;">The laws of the Country/State, excluding its conflicts of law rules, shall govern these Terms and Your use of the Service. Your use of the Application may also be subject to other local, state, national, or international laws.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Disputes Resolution</h3>
+            <p style="margin-bottom: 24px;">If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting the Company.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">For European Union (EU) Users</h3>
+            <p style="margin-bottom: 24px;">If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the country in which You are resident.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">United States Legal Compliance</h3>
+            <p style="margin-bottom: 24px;">You represent and warrant that (i) You are not located in a country that is subject to the United States government embargo, or that has been designated by the United States government as a "terrorist supporting" country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Severability and Waiver</h3>
+            <h4 style="font-weight: 600; margin-top: 16px; margin-bottom: 8px;">Severability</h4>
+            <p style="margin-bottom: 16px;">If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.</p>
+            <h4 style="font-weight: 600; margin-top: 16px; margin-bottom: 8px;">Waiver</h4>
+            <p style="margin-bottom: 24px;">Except as provided herein, the failure to exercise a right or to require performance of an obligation under these Terms shall not affect a party's ability to exercise such right or require such performance at any time thereafter nor shall the waiver of a breach constitute a waiver of any subsequent breach.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Translation Interpretation</h3>
+            <p style="margin-bottom: 24px;">These Terms and Conditions may have been translated if We have made them available to You on our Service. You agree that the original English text shall prevail in the case of a dispute.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Changes to These Terms and Conditions</h3>
+            <p style="margin-bottom: 16px;">We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. If a revision is material We will make reasonable efforts to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at Our sole discretion.</p>
+            <p style="margin-bottom: 24px;">By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the Service.</p>
+
+            <h3 style="color: var(--accent); margin-top: 35px; margin-bottom: 12px; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">Contact Us</h3>
+            <p style="margin-bottom: 12px;">If you have any questions about these Terms and Conditions, You can contact us:</p>
+            <ul style="padding-left: 20px; margin-bottom: 16px; list-style-type: disc;">
+              <li>By email: info@rhemawordministries.co.zw</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating WhatsApp launcher -->
+      <div class="floating-whatsapp-btn" id="wa-floating-launcher" title="Chat on WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2.25c-5.38 0-9.75 4.37-9.75 9.75 0 2.203.734 4.242 1.97 5.88l-1.282 3.84 3.974-1.258a9.713 9.713 0 0 0 5.088 1.443c5.38 0 9.75-4.37 9.75-9.75 0-5.38-4.37-9.75-9.75-9.75zm5.556 13.914c-.244.686-1.233 1.255-1.71 1.305-.444.047-.992.083-2.923-.687-2.47-1.02-4.042-3.52-4.166-3.684-.12-.164-.992-1.32-.992-2.52 0-1.2.628-1.79.852-2.03.224-.24.496-.3.664-.3.168 0 .336 0 .484.007.148.006.348-.056.544.417.2.482.684 1.666.744 1.786.06.12.098.26.02.42-.08.16-.176.35-.35.55-.176.2-.368.45-.528.6-.176.16-.36.34-.152.697.208.35.922 1.52 1.978 2.46 1.356 1.21 2.502 1.583 2.854 1.76.35.176.554.148.762-.09.208-.24.896-1.045 1.134-1.4.24-.356.48-.3.8-.18.32.12 2.034 1.002 2.38 1.176.348.174.58.26.664.4.084.14.084.81-.16 1.496z"/></svg>
+      </div>
+
+    </div>
+    
+    <!-- Scripts -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "rhema-word-ministries",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/inline-css.js",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.1.1"
+  },
+  "dependencies": {
+    "pesepay": "^1.0.4"
+  }
+}
