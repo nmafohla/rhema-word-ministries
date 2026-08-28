@@ -47,7 +47,8 @@ const DEFAULT_DATABASE = {
   events: [
     { id: "e-1", title: "Sunday Celebration Service", date: "2026-08-16", time: "11:00 AM - 01:30 PM", location: "Luxor House Basement, Cnr 9th Ave & Fife St, Bulawayo", description: "Experience heartfelt worship, dynamic preaching of the Rhema Word, and supernatural demonstrations of the Holy Spirit with Apostle Keith & Pastor Talent." },
     { id: "e-2", title: "Midweek Service & Miracle Gathering", date: "2026-08-20", time: "05:30 PM - 07:00 PM", location: "Luxor House Basement, Cnr 9th Ave & Fife St, Bulawayo", description: "Deep dive into scripture, prayer, and prophetic ministry every Thursday evening." },
-    { id: "e-3", title: "People's Foundation Community Food Drive", date: "2026-08-22", time: "10:00 AM", location: "Bulawayo Central & Surrounding Communities", description: "Volunteers gather to distribute basic needs and community aids." }
+    { id: "e-3", title: "People's Foundation Community Food Drive", date: "2026-08-22", time: "10:00 AM", location: "Bulawayo Central & Surrounding Communities", description: "Volunteers gather to distribute basic needs and community aids." },
+    { id: "e-4", title: "Daughters of Zion Dinner Night", date: "2026-08-28", time: "06:00 PM till late", location: "Bulawayo Rainbow Hotel", description: "A Red Carpet Event for Ladies. Dress Code: Dress like a Queen. Entry Fee: $20. Host: Pastor Mrs Millionaire. RSVP Contact: +263 775 662 844.", image: "/images/daughters-of-zion-dinner.jpg" }
   ],
   charityLogs: [
     { id: "c-1", title: "Mealie Meal Community Relief Outreach", date: "2017 to Date", bags: 120, households: 95, cost: "$1,200", image: "/images/charity-dist-1.jpg", details: "Direct distribution of Refined Mealie Meal bags alongside sugar, cooking oil, and soap packages to vulnerable families." },
@@ -696,6 +697,7 @@ function renderEventsFeed(events) {
           <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> ${ev.location}</span>
         </div>
         <p>${ev.description}</p>
+        ${ev.image ? `<div class="event-poster-wrapper" style="margin-top: 16px; max-width: 320px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-color);"><img src="${ev.image}" alt="${ev.title} Poster" style="width: 100%; height: auto; display: block;" /></div>` : ''}
       </div>
     `;
     container.appendChild(card);
@@ -1489,6 +1491,10 @@ function openFormModal(type, editId = null) {
         <label>Short Description</label>
         <textarea id="field-description" rows="3" required>${existing ? existing.description : ''}</textarea>
       </div>
+      <div class="form-group">
+        <label>Poster Image URL (optional)</label>
+        <input type="text" id="field-image" value="${existing ? (existing.image || '') : ''}">
+      </div>
     `;
   } else if (type === 'charity') {
     formFieldsContainer.innerHTML = `
@@ -1599,7 +1605,8 @@ if (adminEntryForm) {
         date: document.getElementById('field-date').value,
         time: document.getElementById('field-time').value,
         location: document.getElementById('field-location').value,
-        description: document.getElementById('field-description').value
+        description: document.getElementById('field-description').value,
+        image: document.getElementById('field-image').value
       };
       if (activeFormEditId) {
         db.events = db.events.map(x => x.id === activeFormEditId ? entry : x);
