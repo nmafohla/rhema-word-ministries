@@ -114,11 +114,77 @@ const DEFAULT_DATABASE = {
   }
 };
 
-// Initialize Database in LocalStorage (with migration for latest updates)
+// Database state
+let db = DEFAULT_DATABASE;
+let firebaseApp, dbStore, firestoreAuth, firebaseStorage;
+
+// Fetch config and initialize Firebase
+async function initFirebase() {
+  try {
+    const configRes = await fetch('/api/config');
+    if (configRes.ok) {
+      const firebaseConfig = await configRes.json();
+      
+      const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js');
+      const { getFirestore, doc, getDoc, setDoc, collection, getDocs } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+      const { getAuth } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js');
+      const { getStorage } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js');
+
+      firebaseApp = initializeApp(firebaseConfig);
+      dbStore = getFirestore(firebaseApp);
+      firestoreAuth = getAuth(firebaseApp);
+      firebaseStorage = getStorage(firebaseApp);
+
+      console.log("Firebase initialized successfully.");
+
+      // 1. Sync Announcement
+      try {
+        const annDocRef = doc(dbStore, "site_data", "announcement");
+        const annSnap = await getDoc(annDocRef);
+        if (annSnap.exists()) {
+          db.announcement = annSnap.data();
+        } else {
+          await setDoc(annDocRef, db.announcement);
+        }
+      } catch (e) {
+        console.error("Firestore announcement sync error:", e);
+      }
+
+      // 2. Sync Events
+      try {
+        const eventsColRef = collection(dbStore, "events");
+        const eventsSnap = await getDocs(eventsColRef);
+        if (eventsSnap.empty) {
+          for (const ev of db.events) {
+            await setDoc(doc(dbStore, "events", ev.id), ev);
+          }
+        } else {
+          const eventsList = [];
+          eventsSnap.forEach(docSnap => {
+            eventsList.push(docSnap.data());
+          });
+          db.events = eventsList;
+        }
+      } catch (e) {
+        console.error("Firestore events sync error:", e);
+      }
+
+      // Re-render UI with Firestore data
+      if (typeof renderAllFeeds === 'function') {
+        renderAllFeeds();
+      }
+    }
+  } catch (err) {
+    console.warn("Failed to initialize Firebase, using offline/localStorage fallback:", err);
+  }
+}
+
+// Local Storage Database Fallback and migrations
 function initDB() {
   const existing = localStorage.getItem('rwm_database');
   if (!existing) {
     localStorage.setItem('rwm_database', JSON.stringify(DEFAULT_DATABASE));
+    db = DEFAULT_DATABASE;
   } else {
     try {
       const parsed = JSON.parse(existing);
@@ -158,8 +224,10 @@ function initDB() {
         });
       }
       localStorage.setItem('rwm_database', JSON.stringify(parsed));
+      db = parsed;
     } catch (e) {
       localStorage.setItem('rwm_database', JSON.stringify(DEFAULT_DATABASE));
+      db = DEFAULT_DATABASE;
     }
   }
 }
@@ -167,13 +235,17 @@ initDB();
 
 // Read DB
 function getDB() {
-  return JSON.parse(localStorage.getItem('rwm_database')) || DEFAULT_DATABASE;
+  return db;
 }
 
 // Write DB
-function saveDB(db) {
+function saveDB(updatedDb) {
+  db = updatedDb;
   localStorage.setItem('rwm_database', JSON.stringify(db));
 }
+
+// Wait for Firebase to load asynchronously in the background
+await initFirebase();
 
 // ================= CLIENT ROUTER =================
 function handleRouting() {
@@ -915,20 +987,39 @@ if (btnCloseAdminGate) btnCloseAdminGate.addEventListener('click', () => adminGa
 if (btnCloseAdminDashboard) btnCloseAdminDashboard.addEventListener('click', () => adminGateOverlay.classList.remove('active'));
 
 if (adminLoginForm) {
-  adminLoginForm.addEventListener('submit', (e) => {
+  adminLoginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const user = document.getElementById('admin-username').value;
-    const pass = document.getElementById('admin-password').value;
+    const user = document.getElementById('admin-username').value.trim();
+    const pass = document.getElementById('admin-password').value.trim();
 
-    if (user === 'admin' && pass === 'RhemaAdmin2026') {
-      isAuthorized = true;
-      loginErrorMsg.innerText = '';
-      adminLoginForm.reset();
-      adminLoginDialog.style.display = 'none';
-      adminDashboardPanel.style.display = 'flex';
-      renderAdminDashboard();
+    if (firestoreAuth) {
+      const email = user.includes('@') ? user : `${user}@rhemawordministries.co.zw`;
+      try {
+        const { signInWithEmailAndPassword } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js');
+        await signInWithEmailAndPassword(firestoreAuth, email, pass);
+        
+        isAuthorized = true;
+        loginErrorMsg.innerText = '';
+        adminLoginForm.reset();
+        adminLoginDialog.style.display = 'none';
+        adminDashboardPanel.style.display = 'flex';
+        renderAdminDashboard();
+      } catch (authErr) {
+        console.error("Firebase auth error:", authErr);
+        loginErrorMsg.innerText = 'Invalid username or password. Authorized personnel only.';
+      }
     } else {
-      loginErrorMsg.innerText = 'Invalid username or password. Authorized personnel only.';
+      // Local fallback for offline/preview settings
+      if (user === 'admin' && pass === 'RhemaAdmin2026') {
+        isAuthorized = true;
+        loginErrorMsg.innerText = '';
+        adminLoginForm.reset();
+        adminLoginDialog.style.display = 'none';
+        adminDashboardPanel.style.display = 'flex';
+        renderAdminDashboard();
+      } else {
+        loginErrorMsg.innerText = 'Invalid username or password. Authorized personnel only.';
+      }
     }
   });
 }
@@ -1255,7 +1346,7 @@ if (btnExportEvents) {
 // ================= SAVE ANNOUNCEMENT & SERVICE TIMES FORMS =================
 const adminAnnouncementForm = document.getElementById('admin-announcement-form');
 if (adminAnnouncementForm) {
-  adminAnnouncementForm.addEventListener('submit', (e) => {
+  adminAnnouncementForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const db = getDB();
     db.announcement = {
@@ -1266,6 +1357,17 @@ if (adminAnnouncementForm) {
       btnLink: document.getElementById('admin-announcement-btn-link').value
     };
     saveDB(db);
+
+    // Save to Cloud Firestore
+    if (dbStore) {
+      try {
+        const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+        await setDoc(doc(dbStore, "site_data", "announcement"), db.announcement);
+      } catch (err) {
+        console.error("Failed to save announcement to Firestore:", err);
+      }
+    }
+
     renderAllFeeds();
     alert("Live Announcement Banner updated successfully!");
   });
@@ -1315,7 +1417,7 @@ document.addEventListener('click', (e) => {
 });
 
 // Hook delete & edit actions on tables
-document.addEventListener('click', (e) => {
+document.addEventListener('click', async (e) => {
   const btnDelete = e.target.closest('.btn-delete-action');
   if (btnDelete) {
     const type = btnDelete.getAttribute('data-delete-type');
@@ -1325,7 +1427,17 @@ document.addEventListener('click', (e) => {
       const db = getDB();
       if (type === 'scripture') db.scriptures = db.scriptures.filter(x => x.id !== id);
       if (type === 'blog') db.blogs = db.blogs.filter(x => x.id !== id);
-      if (type === 'event') db.events = db.events.filter(x => x.id !== id);
+      if (type === 'event') {
+        db.events = db.events.filter(x => x.id !== id);
+        if (dbStore) {
+          try {
+            const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+            await deleteDoc(doc(dbStore, "events", id));
+          } catch (err) {
+            console.error("Failed to delete event from Firestore:", err);
+          }
+        }
+      }
       if (type === 'charity') db.charityLogs = db.charityLogs.filter(x => x.id !== id);
       if (type === 'testimony') db.testimonies = (db.testimonies || []).filter(x => x.id !== id);
       if (type === 'gallery') db.gallery = (db.gallery || []).filter(x => x.id !== id);
@@ -1493,7 +1605,12 @@ function openFormModal(type, editId = null) {
       </div>
       <div class="form-group">
         <label>Poster Image URL (optional)</label>
-        <input type="text" id="field-image" value="${existing ? (existing.image || '') : ''}">
+        <input type="text" id="field-image" value="${existing ? (existing.image || '') : ''}" placeholder="e.g. /images/poster.jpg">
+      </div>
+      <div class="form-group">
+        <label>Or Upload New Poster Image</label>
+        <input type="file" id="field-image-file" accept="image/*">
+        <div id="upload-status" style="margin-top: 6px; font-size: 0.85rem; color: var(--gold-secondary); display: none;">Uploading image, please wait...</div>
       </div>
     `;
   } else if (type === 'charity') {
@@ -1536,7 +1653,7 @@ if (btnCloseEntryModal) {
 
 // Form Submission -> save / update
 if (adminEntryForm) {
-  adminEntryForm.addEventListener('submit', (e) => {
+  adminEntryForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const db = getDB();
     
@@ -1599,6 +1716,28 @@ if (adminEntryForm) {
         db.blogs.unshift(entry);
       }
     } else if (activeFormType === 'event') {
+      const fileInput = document.getElementById('field-image-file');
+      const uploadStatus = document.getElementById('upload-status');
+      let imageUrl = document.getElementById('field-image').value;
+
+      if (fileInput && fileInput.files && fileInput.files[0] && firebaseStorage) {
+        const file = fileInput.files[0];
+        if (uploadStatus) {
+          uploadStatus.style.display = 'block';
+          uploadStatus.innerText = `Uploading poster: ${file.name}...`;
+        }
+        try {
+          const { ref, uploadBytes, getDownloadURL } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js');
+          const storageRef = ref(firebaseStorage, `event-posters/e-${Date.now()}-${file.name}`);
+          const snapshot = await uploadBytes(storageRef, file);
+          imageUrl = await getDownloadURL(snapshot.ref);
+          if (uploadStatus) uploadStatus.innerText = 'Upload successful!';
+        } catch (uploadErr) {
+          console.error("Firebase Storage upload error:", uploadErr);
+          if (uploadStatus) uploadStatus.innerText = 'Upload failed, saving without new image...';
+        }
+      }
+
       const entry = {
         id: activeFormEditId || `e-${Date.now()}`,
         title: document.getElementById('field-title').value,
@@ -1606,12 +1745,23 @@ if (adminEntryForm) {
         time: document.getElementById('field-time').value,
         location: document.getElementById('field-location').value,
         description: document.getElementById('field-description').value,
-        image: document.getElementById('field-image').value
+        image: imageUrl
       };
+
       if (activeFormEditId) {
         db.events = db.events.map(x => x.id === activeFormEditId ? entry : x);
       } else {
         db.events.push(entry);
+      }
+
+      // Write to Cloud Firestore
+      if (dbStore) {
+        try {
+          const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+          await setDoc(doc(dbStore, "events", entry.id), entry);
+        } catch (dbErr) {
+          console.error("Failed to save event to Firestore:", dbErr);
+        }
       }
     } else if (activeFormType === 'charity') {
       const entry = {
