@@ -121,10 +121,27 @@ let firebaseApp, dbStore, firestoreAuth, firebaseStorage;
 // Fetch config and initialize Firebase
 async function initFirebase() {
   try {
-    const configRes = await fetch('/api/config');
-    if (configRes.ok) {
-      const firebaseConfig = await configRes.json();
-      
+    let firebaseConfig;
+    
+    // 1. Try to load config from static json file (best for cPanel static hosting)
+    try {
+      const staticRes = await fetch('/firebase-config.json');
+      if (staticRes.ok) {
+        firebaseConfig = await staticRes.json();
+      }
+    } catch (e) {
+      console.log("Static firebase-config.json not found, attempting API fallback...");
+    }
+
+    // 2. Fall back to serverless function config (best for Vercel preview environments)
+    if (!firebaseConfig) {
+      const configRes = await fetch('/api/config');
+      if (configRes.ok) {
+        firebaseConfig = await configRes.json();
+      }
+    }
+
+    if (firebaseConfig && firebaseConfig.apiKey) {
       const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js');
       const { getFirestore, doc, getDoc, setDoc, collection, getDocs } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
       const { getAuth } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js');
