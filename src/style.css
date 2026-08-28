@@ -1451,7 +1451,7 @@ body.light-theme .btn-theme-toggle:hover {
 .btn-delete-action { color: var(--danger); }
 .donation-stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
 .donation-stats-row .metric-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-xs); padding: 22px; text-align: center; }
-.admin-form-modal { display: none; position: absolute; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); max-width: 500px; width: 90%; padding: 30px; z-index: 210; box-shadow: var(--shadow-lg); }
+.admin-form-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); max-width: 500px; width: 90%; padding: 30px; z-index: 210; box-shadow: var(--shadow-lg); }
 .admin-form-modal.active { display: block; }
 
 /* ==========================================================
