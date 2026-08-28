@@ -261,8 +261,8 @@ function saveDB(updatedDb) {
   localStorage.setItem('rwm_database', JSON.stringify(db));
 }
 
-// Wait for Firebase to load asynchronously in the background
-await initFirebase();
+// Load Firebase asynchronously in the background
+initFirebase();
 
 // ================= CLIENT ROUTER =================
 function handleRouting() {
