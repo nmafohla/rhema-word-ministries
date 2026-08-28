@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/inline-css.js && mkdir -p dist/images && cp -R images/ dist/images/ && cp favicon.svg dist/ && cp icons.svg dist/",
+    "build": "vite build && node scripts/inline-css.js && rm -rf dist/images && cp -R images dist/ && cp favicon.svg dist/ && cp icons.svg dist/",
     "preview": "vite preview"
   },
   "devDependencies": {
