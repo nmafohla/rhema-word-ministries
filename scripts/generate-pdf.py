@@ -135,10 +135,32 @@ def generate_pdf():
         "• Click on <b>Events & Services</b> in the admin sidebar.<br/>"
         "• Click the gold <b>+ Schedule Event</b> button (located in the top right of the table).<br/>"
         "• Fill in the title, date, time slot, location, and description.<br/>"
-        "• Click **Choose File** next to <b>Or Upload New Poster Image</b> to select a flyer from your computer or phone.<br/>"
+        "• Click <b>Choose File</b> next to <b>Or Upload New Poster Image</b> to select a flyer from your computer or phone.<br/>"
         "• Click <b>Save to Database</b> to upload the flyer and push the event live."
     )
     story.append(Paragraph(steps_events, body_style))
+
+    # Section 4: Weekly Word & Video Sermons
+    story.append(Paragraph("4. Publishing Weekly Word & Video Sermons", h1_style))
+    story.append(Paragraph("You can post Apostle Keith's weekly teachings and attach either direct video files or YouTube stream links.", body_style))
+    steps_video = (
+        "• Click on <b>Weekly Word</b> in the admin sidebar.<br/>"
+        "• Click <b>+ Write Weekly Word</b> (or click the pencil icon to edit an existing sermon).<br/>"
+        "• Under <b>Video URL or YouTube Link</b>: paste a YouTube, Vimeo, or stream link.<br/>"
+        "• <b>Or Upload Video File</b>: Click <b>Choose File</b> to upload an MP4/WebM video file directly.<br/>"
+        "• Enter the Title, Category, Summary, and Sermon Body, then click <b>Save to Database</b>.<br/>"
+        "• The embedded video player will appear automatically on the Weekly Word page!"
+    )
+    story.append(Paragraph(steps_video, body_style))
+
+    # Section 5: Photo Gallery Uploads
+    story.append(Paragraph("5. Photo Gallery & Outreach Uploads", h1_style))
+    steps_gallery = (
+        "• Click on <b>Photo Gallery</b> in the admin sidebar.<br/>"
+        "• Click <b>+ Upload Photo</b>.<br/>"
+        "• Choose your photo file directly, enter a title/caption, and click <b>Save to Database</b>."
+    )
+    story.append(Paragraph(steps_gallery, body_style))
     
     # Include screenshot
     if os.path.exists(screenshot_path):
