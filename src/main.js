@@ -186,6 +186,44 @@ async function initFirebase() {
         console.error("Firestore events sync error:", e);
       }
 
+      // 3. Sync Blogs & Video Sermons
+      try {
+        const blogsColRef = collection(dbStore, "blogs");
+        const blogsSnap = await getDocs(blogsColRef);
+        if (blogsSnap.empty) {
+          for (const post of db.blogs) {
+            await setDoc(doc(dbStore, "blogs", post.id), post);
+          }
+        } else {
+          const blogsList = [];
+          blogsSnap.forEach(docSnap => {
+            blogsList.push(docSnap.data());
+          });
+          db.blogs = blogsList;
+        }
+      } catch (e) {
+        console.error("Firestore blogs sync error:", e);
+      }
+
+      // 4. Sync Gallery Photos
+      try {
+        const galleryColRef = collection(dbStore, "gallery");
+        const gallerySnap = await getDocs(galleryColRef);
+        if (gallerySnap.empty) {
+          for (const item of (db.gallery || [])) {
+            await setDoc(doc(dbStore, "gallery", item.id), item);
+          }
+        } else {
+          const galleryList = [];
+          gallerySnap.forEach(docSnap => {
+            galleryList.push(docSnap.data());
+          });
+          db.gallery = galleryList;
+        }
+      } catch (e) {
+        console.error("Firestore gallery sync error:", e);
+      }
+
       // Re-render UI with Firestore data
       if (typeof renderAllFeeds === 'function') {
         renderAllFeeds();
@@ -681,6 +719,45 @@ function renderCharityLedger(logs) {
   });
 }
 
+// Helper to format & embed video players (YouTube, Vimeo, or Direct MP4 / Cloud Storage)
+function renderVideoEmbed(url) {
+  if (!url || typeof url !== 'string') return '';
+  const trimmed = url.trim();
+  if (!trimmed) return '';
+
+  // YouTube match
+  const ytMatch = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+  if (ytMatch && ytMatch[1]) {
+    return `
+      <div class="video-embed-wrapper" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:var(--radius-xs); margin:14px 0; background:#000; border:1px solid var(--border-color);">
+        <iframe src="https://www.youtube.com/embed/${ytMatch[1]}" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    `;
+  }
+
+  // Vimeo match
+  const vimeoMatch = trimmed.match(/vimeo\.com\/(\d+)/);
+  if (vimeoMatch && vimeoMatch[1]) {
+    return `
+      <div class="video-embed-wrapper" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:var(--radius-xs); margin:14px 0; background:#000; border:1px solid var(--border-color);">
+        <iframe src="https://player.vimeo.com/video/${vimeoMatch[1]}" style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
+      </div>
+    `;
+  }
+
+  // Direct MP4 / Cloud Storage Video
+  return `
+    <div class="video-embed-wrapper" style="margin:14px 0; border-radius:var(--radius-xs); overflow:hidden; background:#000; border:1px solid var(--border-color);">
+      <video controls playsinline preload="metadata" style="width:100%; max-height:440px; display:block; outline:none; border-radius:var(--radius-xs);">
+        <source src="${trimmed}" type="video/mp4">
+        <source src="${trimmed}" type="video/webm">
+        <source src="${trimmed}" type="video/quicktime">
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+  `;
+}
+
 // Render Blog/Updates
 function renderBlogsFeed(posts) {
   const container = document.getElementById('blog-posts-container');
@@ -696,14 +773,17 @@ function renderBlogsFeed(posts) {
   posts.forEach(post => {
     const card = document.createElement('article');
     card.className = 'glass-card blog-card';
+    const videoMarkup = post.videoUrl ? renderVideoEmbed(post.videoUrl) : '';
     card.innerHTML = `
       <div class="blog-meta">
         <span><i data-lucide="calendar" style="width:14px;height:14px;"></i> ${post.date}</span>
         <span><i data-lucide="user" style="width:14px;height:14px;"></i> ${post.author}</span>
         <span class="txt-accent" style="font-weight:600;"><i data-lucide="tag" style="width:14px;height:14px;"></i> ${post.category}</span>
+        ${post.videoUrl ? `<span style="color:var(--accent); font-weight:600; font-size:0.8rem; display:inline-flex; align-items:center; gap:4px;"><i data-lucide="video" style="width:14px;height:14px;"></i> Video Sermon</span>` : ''}
       </div>
       <h3>${post.title}</h3>
       <p>${post.summary}</p>
+      ${videoMarkup}
       <div class="blog-full-content" id="blog-content-${post.id}" style="display:none; border-top:1px solid var(--border-color); padding-top:16px; margin-top:12px; font-size:0.95rem; color:var(--txt-secondary);">
         ${post.content.replace(/\n/g, '<br>')}
       </div>
@@ -727,6 +807,8 @@ function renderBlogsFeed(posts) {
       if (window.lucide) window.lucide.createIcons();
     });
   });
+
+  if (window.lucide) window.lucide.createIcons();
 }
 
 // Render Scriptures in Sidebar
@@ -1207,7 +1289,7 @@ function renderAdminDashboard() {
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${post.date}</td>
-        <td><strong>${post.title}</strong></td>
+        <td><strong>${post.title}</strong>${post.videoUrl ? ' <span style="display:inline-flex; align-items:center; gap:3px; margin-left:6px; font-size:0.75rem; color:var(--accent); font-weight:600;"><i data-lucide="video" style="width:12px;height:12px;"></i> Video</span>' : ''}</td>
         <td>${post.category}</td>
         <td>${post.author}</td>
         <td class="actions-td">
@@ -1443,7 +1525,17 @@ document.addEventListener('click', async (e) => {
     if (confirm(`Are you sure you want to delete this ${type}?`)) {
       const db = getDB();
       if (type === 'scripture') db.scriptures = db.scriptures.filter(x => x.id !== id);
-      if (type === 'blog') db.blogs = db.blogs.filter(x => x.id !== id);
+      if (type === 'blog') {
+        db.blogs = db.blogs.filter(x => x.id !== id);
+        if (dbStore) {
+          try {
+            const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+            await deleteDoc(doc(dbStore, "blogs", id));
+          } catch (err) {
+            console.error("Failed to delete blog from Firestore:", err);
+          }
+        }
+      }
       if (type === 'event') {
         db.events = db.events.filter(x => x.id !== id);
         if (dbStore) {
@@ -1457,7 +1549,17 @@ document.addEventListener('click', async (e) => {
       }
       if (type === 'charity') db.charityLogs = db.charityLogs.filter(x => x.id !== id);
       if (type === 'testimony') db.testimonies = (db.testimonies || []).filter(x => x.id !== id);
-      if (type === 'gallery') db.gallery = (db.gallery || []).filter(x => x.id !== id);
+      if (type === 'gallery') {
+        db.gallery = (db.gallery || []).filter(x => x.id !== id);
+        if (dbStore) {
+          try {
+            const { doc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+            await deleteDoc(doc(dbStore, "gallery", id));
+          } catch (err) {
+            console.error("Failed to delete gallery item from Firestore:", err);
+          }
+        }
+      }
       
       saveDB(db);
       renderAdminDashboard();
@@ -1548,8 +1650,13 @@ function openFormModal(type, editId = null) {
         <input type="text" id="field-title" value="${existing ? existing.title : ''}" placeholder="Relief Outreach Mission" required>
       </div>
       <div class="form-group">
-        <label>Image URL (e.g. /images/charity-dist-1.jpg or web URL)</label>
-        <input type="text" id="field-image" value="${existing ? existing.image : '/images/charity-dist-1.jpg'}" required>
+        <label>Photo Image URL</label>
+        <input type="text" id="field-image" value="${existing ? (existing.image || '') : '/images/charity-dist-1.jpg'}" placeholder="e.g. /images/photo.jpg">
+      </div>
+      <div class="form-group">
+        <label>Or Upload Photo Image</label>
+        <input type="file" id="field-image-file" accept="image/*">
+        <div id="upload-status" style="margin-top: 6px; font-size: 0.85rem; color: var(--gold-secondary); display: none;">Uploading image, please wait...</div>
       </div>
       <div class="form-group">
         <label>Category</label>
@@ -1592,6 +1699,15 @@ function openFormModal(type, editId = null) {
       <div class="form-group">
         <label>Summary Hook</label>
         <input type="text" id="field-summary" value="${existing ? existing.summary : ''}" required>
+      </div>
+      <div class="form-group">
+        <label>Video URL or YouTube Link (optional)</label>
+        <input type="text" id="field-video-url" value="${existing ? (existing.videoUrl || '') : ''}" placeholder="e.g. https://youtube.com/watch?v=... or direct MP4 link">
+      </div>
+      <div class="form-group">
+        <label>Or Upload Video File (MP4, WebM)</label>
+        <input type="file" id="field-video-file" accept="video/mp4,video/webm,video/ogg,video/quicktime">
+        <div id="video-upload-status" style="margin-top: 6px; font-size: 0.85rem; color: var(--gold-secondary); display: none;">Uploading video, please wait...</div>
       </div>
       <div class="form-group">
         <label>Sermon Body Content</label>
@@ -1690,10 +1806,33 @@ if (adminEntryForm) {
         db.testimonies.unshift(entry);
       }
     } else if (activeFormType === 'gallery') {
+      const fileInput = document.getElementById('field-image-file');
+      const uploadStatus = document.getElementById('upload-status');
+      let imageUrl = document.getElementById('field-image').value;
+
+      if (fileInput && fileInput.files && fileInput.files[0] && firebaseStorage) {
+        const file = fileInput.files[0];
+        if (uploadStatus) {
+          uploadStatus.style.display = 'block';
+          uploadStatus.innerText = `Uploading photo: ${file.name}...`;
+        }
+        try {
+          const { ref, uploadBytes, getDownloadURL } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js');
+          const cleanName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+          const storageRef = ref(firebaseStorage, `gallery-photos/g-${Date.now()}-${cleanName}`);
+          const snapshot = await uploadBytes(storageRef, file);
+          imageUrl = await getDownloadURL(snapshot.ref);
+          if (uploadStatus) uploadStatus.innerText = 'Upload successful!';
+        } catch (uploadErr) {
+          console.error("Firebase Storage photo upload error:", uploadErr);
+          if (uploadStatus) uploadStatus.innerText = 'Upload failed, saving without new photo...';
+        }
+      }
+
       const entry = {
         id: activeFormEditId || `g-${Date.now()}`,
         title: document.getElementById('field-title').value,
-        image: document.getElementById('field-image').value,
+        image: imageUrl,
         category: document.getElementById('field-category').value,
         date: document.getElementById('field-date').value,
         details: document.getElementById('field-details').value
@@ -1703,6 +1842,16 @@ if (adminEntryForm) {
       } else {
         if (!db.gallery) db.gallery = [];
         db.gallery.unshift(entry);
+      }
+
+      // Write to Cloud Firestore
+      if (dbStore) {
+        try {
+          const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+          await setDoc(doc(dbStore, "gallery", entry.id), entry);
+        } catch (dbErr) {
+          console.error("Failed to save gallery item to Firestore:", dbErr);
+        }
       }
     } else if (activeFormType === 'scripture') {
       const entry = {
@@ -1718,19 +1867,55 @@ if (adminEntryForm) {
         db.scriptures.unshift(entry);
       }
     } else if (activeFormType === 'blog') {
+      const videoFileInput = document.getElementById('field-video-file');
+      const videoUploadStatus = document.getElementById('video-upload-status');
+      let videoUrl = document.getElementById('field-video-url') ? document.getElementById('field-video-url').value.trim() : '';
+
+      if (videoFileInput && videoFileInput.files && videoFileInput.files[0] && firebaseStorage) {
+        const file = videoFileInput.files[0];
+        if (videoUploadStatus) {
+          videoUploadStatus.style.display = 'block';
+          videoUploadStatus.innerText = `Uploading video: ${file.name} (please wait)...`;
+        }
+        try {
+          const { ref, uploadBytes, getDownloadURL } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js');
+          const cleanName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+          const storageRef = ref(firebaseStorage, `sermon-videos/v-${Date.now()}-${cleanName}`);
+          const snapshot = await uploadBytes(storageRef, file);
+          videoUrl = await getDownloadURL(snapshot.ref);
+          if (videoUploadStatus) videoUploadStatus.innerText = 'Video upload successful!';
+        } catch (uploadErr) {
+          console.error("Firebase Storage video upload error:", uploadErr);
+          if (videoUploadStatus) videoUploadStatus.innerText = 'Video upload failed, saving without new video...';
+        }
+      }
+
+      const existingBlog = activeFormEditId ? db.blogs.find(x => x.id === activeFormEditId) : null;
       const entry = {
         id: activeFormEditId || `b-${Date.now()}`,
         title: document.getElementById('field-title').value,
         category: document.getElementById('field-category').value,
         summary: document.getElementById('field-summary').value,
         content: document.getElementById('field-content').value,
-        date: new Date().toISOString().split('T')[0],
+        videoUrl: videoUrl,
+        date: existingBlog ? (existingBlog.date || new Date().toISOString().split('T')[0]) : new Date().toISOString().split('T')[0],
         author: "Apostle Keith Bhehane"
       };
+
       if (activeFormEditId) {
         db.blogs = db.blogs.map(x => x.id === activeFormEditId ? entry : x);
       } else {
         db.blogs.unshift(entry);
+      }
+
+      // Write to Cloud Firestore
+      if (dbStore) {
+        try {
+          const { doc, setDoc } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+          await setDoc(doc(dbStore, "blogs", entry.id), entry);
+        } catch (dbErr) {
+          console.error("Failed to save blog to Firestore:", dbErr);
+        }
       }
     } else if (activeFormType === 'event') {
       const fileInput = document.getElementById('field-image-file');
