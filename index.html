@@ -1357,7 +1357,10 @@
           <form id="admin-entry-form">
             <!-- Fields generated dynamically by js depending on open model type -->
             <div id="form-fields-container"></div>
-            <button type="submit" class="btn btn-primary btn-block">Save to Database</button>
+            <div style="display:flex; gap:12px; margin-top:20px;">
+              <button type="button" class="btn btn-secondary" id="btn-cancel-entry-modal" style="flex:1; border:1px solid var(--border-color); background:rgba(255,255,255,0.05); color:var(--txt-secondary); cursor:pointer;">Cancel</button>
+              <button type="submit" class="btn btn-primary" style="flex:2;">Save to Database</button>
+            </div>
           </form>
          </div>
         

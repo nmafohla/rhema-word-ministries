@@ -1792,6 +1792,7 @@ function openFormModal(type, editId = null) {
   }
 
   entryFormModal.classList.add('active');
+  if (window.lucide) window.lucide.createIcons();
 }
 
 if (btnCloseEntryModal) {
@@ -1799,6 +1800,19 @@ if (btnCloseEntryModal) {
     entryFormModal.classList.remove('active');
   });
 }
+
+const btnCancelEntryModal = document.getElementById('btn-cancel-entry-modal');
+if (btnCancelEntryModal) {
+  btnCancelEntryModal.addEventListener('click', () => {
+    entryFormModal.classList.remove('active');
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && entryFormModal) {
+    entryFormModal.classList.remove('active');
+  }
+});
 
 // Form Submission -> save / update
 if (adminEntryForm) {
