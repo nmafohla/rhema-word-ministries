@@ -632,7 +632,7 @@ function renderTestimonies(testimonies) {
   });
 }
 
-// Render Foundation Acts Photo Gallery
+// Render Foundation Acts Photo & Video Gallery
 function renderGallery(photos) {
   const grid = document.getElementById('foundation-acts-grid');
   if (!grid) return;
@@ -641,21 +641,29 @@ function renderGallery(photos) {
   photos.forEach(photo => {
     const card = document.createElement('div');
     card.className = 'outreach-card glass-card';
+    const mediaContent = photo.videoUrl 
+      ? renderVideoEmbed(photo.videoUrl)
+      : `<div class="outreach-img-wrapper">
+          <img src="${photo.image || '/images/charity-dist-1.jpg'}" alt="${photo.title}" loading="lazy">
+          <div class="outreach-overlay">
+            <span class="outreach-date">${photo.date || 'Relief Mission'}</span>
+          </div>
+        </div>`;
+
     card.innerHTML = `
-      <div class="outreach-img-wrapper">
-        <img src="${photo.image || '/images/charity-dist-1.jpg'}" alt="${photo.title}" loading="lazy">
-        <div class="outreach-overlay">
-          <span class="outreach-date">${photo.date || 'Relief Mission'}</span>
-        </div>
-      </div>
-      <div class="outreach-info">
-        <span style="font-size:0.72rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.08em; display:block; margin-bottom:4px;">${photo.category || 'Outreach'}</span>
+      ${mediaContent}
+      <div class="outreach-info" style="${photo.videoUrl ? 'padding-top:10px;' : ''}">
+        <span style="font-size:0.72rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.08em; display:flex; align-items:center; gap:4px; margin-bottom:4px;">
+          ${photo.category || 'Outreach'}
+          ${photo.videoUrl ? '• <i data-lucide="video" style="width:12px;height:12px;"></i> VIDEO' : ''}
+        </span>
         <h3>${photo.title}</h3>
         <p>${photo.details || ''}</p>
       </div>
     `;
     grid.appendChild(card);
   });
+  if (window.lucide) window.lucide.createIcons();
 }
 
 // Setup Gallery filters (All / Church Life & Worship / People's Foundation)
@@ -1249,8 +1257,8 @@ function renderAdminDashboard() {
     (db.gallery || []).forEach(item => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td><img src="${item.image}" style="width:48px; height:36px; object-fit:cover; border-radius:3px;"></td>
-        <td><strong>${item.title}</strong><br><small style="color:var(--txt-muted);">${(item.details || '').substring(0, 50)}...</small></td>
+        <td><img src="${item.image || '/images/charity-dist-1.jpg'}" style="width:48px; height:36px; object-fit:cover; border-radius:3px;"></td>
+        <td><strong>${item.title}</strong>${item.videoUrl ? ' <span style="display:inline-flex; align-items:center; gap:3px; margin-left:6px; font-size:0.75rem; color:var(--accent); font-weight:600;"><i data-lucide="video" style="width:12px;height:12px;"></i> Video</span>' : ''}<br><small style="color:var(--txt-muted);">${(item.details || '').substring(0, 50)}...</small></td>
         <td><span class="txt-accent">${item.category || 'Outreach'}</span></td>
         <td>${item.date || 'Relief'}</td>
         <td class="actions-td">
@@ -1646,26 +1654,34 @@ function openFormModal(type, editId = null) {
   } else if (type === 'gallery') {
     formFieldsContainer.innerHTML = `
       <div class="form-group">
-        <label>Photo Title / Caption</label>
-        <input type="text" id="field-title" value="${existing ? existing.title : ''}" placeholder="Relief Outreach Mission" required>
+        <label>Media Title / Caption</label>
+        <input type="text" id="field-title" value="${existing ? existing.title : ''}" placeholder="e.g. Worship Highlights / Relief Outreach Mission" required>
       </div>
       <div class="form-group">
-        <label>Photo Image URL</label>
-        <input type="text" id="field-image" value="${existing ? (existing.image || '') : '/images/charity-dist-1.jpg'}" placeholder="e.g. /images/photo.jpg">
+        <label>Category</label>
+        <input type="text" id="field-category" value="${existing ? existing.category : 'Church Life & Worship'}" required>
+      </div>
+      <div class="form-group">
+        <label>Date Tag</label>
+        <input type="text" id="field-date" value="${existing ? existing.date : 'Recent Service'}" required>
+      </div>
+      <div class="form-group">
+        <label>Photo Image URL (or Video Poster)</label>
+        <input type="text" id="field-image" value="${existing ? (existing.image || '') : ''}" placeholder="e.g. /images/photo.jpg or web image link">
       </div>
       <div class="form-group">
         <label>Or Upload Photo Image</label>
         <input type="file" id="field-image-file" accept="image/*">
-        <div id="upload-status" style="margin-top: 6px; font-size: 0.85rem; color: var(--gold-secondary); display: none;">Uploading image, please wait...</div>
+      </div>
+      <div class="form-group" style="border-top: 1px dashed var(--border-color); padding-top: 10px; margin-top: 10px;">
+        <label>Video URL or YouTube Link (optional)</label>
+        <input type="text" id="field-video-url" value="${existing ? (existing.videoUrl || '') : ''}" placeholder="e.g. https://youtube.com/watch?v=... or direct MP4 link">
       </div>
       <div class="form-group">
-        <label>Category</label>
-        <input type="text" id="field-category" value="${existing ? existing.category : 'Mealie Meal Outreach'}" required>
+        <label>Or Upload Video File (MP4, WebM)</label>
+        <input type="file" id="field-video-file" accept="video/mp4,video/webm,video/ogg,video/quicktime">
       </div>
-      <div class="form-group">
-        <label>Date Tag</label>
-        <input type="text" id="field-date" value="${existing ? existing.date : 'Relief Mission'}" required>
-      </div>
+      <div id="upload-status" style="margin-top: 6px; font-size: 0.85rem; color: var(--gold-secondary); display: none;">Uploading media, please wait...</div>
       <div class="form-group">
         <label>Description Details</label>
         <textarea id="field-details" rows="3">${existing ? existing.details : ''}</textarea>
@@ -1807,9 +1823,12 @@ if (adminEntryForm) {
       }
     } else if (activeFormType === 'gallery') {
       const fileInput = document.getElementById('field-image-file');
+      const videoFileInput = document.getElementById('field-video-file');
       const uploadStatus = document.getElementById('upload-status');
-      let imageUrl = document.getElementById('field-image').value;
+      let imageUrl = document.getElementById('field-image') ? document.getElementById('field-image').value.trim() : '';
+      let videoUrl = document.getElementById('field-video-url') ? document.getElementById('field-video-url').value.trim() : '';
 
+      // 1. Upload photo if selected
       if (fileInput && fileInput.files && fileInput.files[0] && firebaseStorage) {
         const file = fileInput.files[0];
         if (uploadStatus) {
@@ -1822,21 +1841,44 @@ if (adminEntryForm) {
           const storageRef = ref(firebaseStorage, `gallery-photos/g-${Date.now()}-${cleanName}`);
           const snapshot = await uploadBytes(storageRef, file);
           imageUrl = await getDownloadURL(snapshot.ref);
-          if (uploadStatus) uploadStatus.innerText = 'Upload successful!';
+          if (uploadStatus) uploadStatus.innerText = 'Photo upload successful!';
         } catch (uploadErr) {
           console.error("Firebase Storage photo upload error:", uploadErr);
-          if (uploadStatus) uploadStatus.innerText = 'Upload failed, saving without new photo...';
+          if (uploadStatus) uploadStatus.innerText = 'Photo upload failed, saving without new photo...';
         }
       }
 
+      // 2. Upload video if selected
+      if (videoFileInput && videoFileInput.files && videoFileInput.files[0] && firebaseStorage) {
+        const file = videoFileInput.files[0];
+        if (uploadStatus) {
+          uploadStatus.style.display = 'block';
+          uploadStatus.innerText = `Uploading video: ${file.name} (please wait)...`;
+        }
+        try {
+          const { ref, uploadBytes, getDownloadURL } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js');
+          const cleanName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+          const storageRef = ref(firebaseStorage, `gallery-videos/gv-${Date.now()}-${cleanName}`);
+          const snapshot = await uploadBytes(storageRef, file);
+          videoUrl = await getDownloadURL(snapshot.ref);
+          if (uploadStatus) uploadStatus.innerText = 'Video upload successful!';
+        } catch (uploadErr) {
+          console.error("Firebase Storage video upload error:", uploadErr);
+          if (uploadStatus) uploadStatus.innerText = 'Video upload failed, saving without new video...';
+        }
+      }
+
+      const existingGallery = activeFormEditId ? (db.gallery || []).find(x => x.id === activeFormEditId) : null;
       const entry = {
         id: activeFormEditId || `g-${Date.now()}`,
         title: document.getElementById('field-title').value,
-        image: imageUrl,
+        image: imageUrl || (existingGallery ? existingGallery.image : '/images/charity-dist-1.jpg'),
+        videoUrl: videoUrl,
         category: document.getElementById('field-category').value,
         date: document.getElementById('field-date').value,
         details: document.getElementById('field-details').value
       };
+
       if (activeFormEditId) {
         db.gallery = (db.gallery || []).map(x => x.id === activeFormEditId ? entry : x);
       } else {
