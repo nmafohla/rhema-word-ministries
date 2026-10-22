@@ -1,0 +1,3 @@
+
+# Block access to git metadata (deploy.php is a normal file and is served directly)
+RedirectMatch 404 /\.git
