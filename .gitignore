@@ -31,3 +31,5 @@ dist-ssr
 firebase-config.json
 !firebase-config.json.example
 
+/.deploy-secrets/
+*.secret
