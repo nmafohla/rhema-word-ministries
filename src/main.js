@@ -1116,17 +1116,7 @@ if (adminLoginForm) {
         loginErrorMsg.innerText = 'Invalid username or password. Authorized personnel only.';
       }
     } else {
-      // Local fallback for offline/preview settings
-      if (user === 'admin' && pass === 'RhemaAdmin2026') {
-        isAuthorized = true;
-        loginErrorMsg.innerText = '';
-        adminLoginForm.reset();
-        adminLoginDialog.style.display = 'none';
-        adminDashboardPanel.style.display = 'flex';
-        renderAdminDashboard();
-      } else {
-        loginErrorMsg.innerText = 'Invalid username or password. Authorized personnel only.';
-      }
+      loginErrorMsg.innerText = 'Sign-in is unavailable. Please try again shortly.';
     }
   });
 }

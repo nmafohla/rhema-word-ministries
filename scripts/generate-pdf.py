@@ -105,8 +105,8 @@ def generate_pdf():
     
     login_info = [
         [Paragraph("<b>Portal URL:</b>", body_style), Paragraph("<font color='#0066cc'><u>https://rhemawordministries.co.zw</u></font> (Click <b>Admin</b> in navbar)", body_style)],
-        [Paragraph("<b>Admin Email:</b>", body_style), Paragraph("admin@rhemawordministries.co.zw <i>(or type 'admin')</i>", body_style)],
-        [Paragraph("<b>Password:</b>", body_style), Paragraph("<b>RhemaAdmin2026</b>", code_style)]
+        [Paragraph("<b>Admin Email:</b>", body_style), Paragraph("The Firebase admin email. Do not publish it.", body_style)],
+        [Paragraph("<b>Password:</b>", body_style), Paragraph("The Firebase password. It is not stored in the website.", body_style)]
     ]
     login_table = Table(login_info, colWidths=[100, doc.width - 100])
     login_table.setStyle(TableStyle([
