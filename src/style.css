@@ -795,7 +795,8 @@ body.light-theme .btn-theme-toggle:hover {
   z-index: 0;
 }
 .section-header-container > * { position: relative; z-index: 1; padding-left: 28px; color: #FFFFFF !important; }
-.section-header-container h1 {
+.section-header-container h1,
+.section-header-container h2.page-title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.03em;
