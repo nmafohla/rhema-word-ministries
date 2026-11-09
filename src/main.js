@@ -876,7 +876,7 @@ function renderEventsFeed(events) {
           <span><i data-lucide="map-pin" style="width:14px;height:14px;"></i> ${ev.location}</span>
         </div>
         <p>${ev.description}</p>
-        ${ev.image ? `<div class="event-poster-wrapper" style="margin-top: 16px; max-width: 320px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-color);"><img src="${ev.image}" alt="${ev.title} Poster" style="width: 100%; height: auto; display: block;" /></div>` : ''}
+        ${ev.image ? `<div class="event-poster-wrapper" style="margin-top: 16px; max-width: 320px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-color);"><img src="${ev.image}" alt="${ev.title} Poster" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;" /></div>` : ''}
       </div>
     `;
     container.appendChild(card);
